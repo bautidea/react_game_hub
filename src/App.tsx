@@ -12,6 +12,7 @@ function App() {
   }, []);
 
   console.log(data);
+  a;
 
   return (
     <>
