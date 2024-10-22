@@ -1,6 +1,18 @@
-import './App.css';
+import { useEffect, useState } from 'react';
+import { axiosInstance } from './services/axiosInstance';
 
 function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axiosInstance
+      .get('/games')
+      .then((res) => setData(res.data.results))
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(data);
+
   return (
     <>
       <h1>HI</h1>

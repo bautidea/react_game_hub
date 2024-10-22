@@ -1,0 +1,135 @@
+[
+  {
+    "id": 4,
+    "name": "Action",
+    "slug": "action",
+    "games_count": 182899,
+    "image_background": "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg"
+  },
+  {
+    "id": 51,
+    "name": "Indie",
+    "slug": "indie",
+    "games_count": 70369,
+    "image_background": "https://media.rawg.io/media/games/9dd/9ddabb34840ea9227556670606cf8ea3.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Adventure",
+    "slug": "adventure",
+    "games_count": 142631,
+    "image_background": "https://media.rawg.io/media/games/7f6/7f6cd70ba2ad57053b4847c13569f2d8.jpg"
+  },
+  {
+    "id": 5,
+    "name": "RPG",
+    "slug": "role-playing-games-rpg",
+    "games_count": 57503,
+    "image_background": "https://media.rawg.io/media/games/6cd/6cd653e0aaef5ff8bbd295bf4bcb12eb.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Strategy",
+    "slug": "strategy",
+    "games_count": 57728,
+    "image_background": "https://media.rawg.io/media/games/e4a/e4ab7f784bdc38c76ce6e4cef9715d18.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Shooter",
+    "slug": "shooter",
+    "games_count": 59525,
+    "image_background": "https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg"
+  },
+  {
+    "id": 40,
+    "name": "Casual",
+    "slug": "casual",
+    "games_count": 56801,
+    "image_background": "https://media.rawg.io/media/games/d1c/d1cd8a226cb224357c1f59605577cbf2.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Simulation",
+    "slug": "simulation",
+    "games_count": 71304,
+    "image_background": "https://media.rawg.io/media/games/270/270b412b66688081497b3d70c100b208.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Puzzle",
+    "slug": "puzzle",
+    "games_count": 97316,
+    "image_background": "https://media.rawg.io/media/games/3ef/3eff92562640e452d3487c04ba6d7fae.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Arcade",
+    "slug": "arcade",
+    "games_count": 22658,
+    "image_background": "https://media.rawg.io/media/games/23d/23d78acedbb5f40c9fb64e73af5af65d.jpg"
+  },
+  {
+    "id": 83,
+    "name": "Platformer",
+    "slug": "platformer",
+    "games_count": 100819,
+    "image_background": "https://media.rawg.io/media/games/c89/c89ca70716080733d03724277df2c6c7.jpg"
+  },
+  {
+    "id": 1,
+    "name": "Racing",
+    "slug": "racing",
+    "games_count": 25012,
+    "image_background": "https://media.rawg.io/media/games/8f3/8f306808c45a4dbe0cd698e0b142af08.jpg"
+  },
+  {
+    "id": 59,
+    "name": "Massively Multiplayer",
+    "slug": "massively-multiplayer",
+    "games_count": 3806,
+    "image_background": "https://media.rawg.io/media/games/c3b/c3be1d5f55cb9324c97ccb7aaaf42ad4.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Sports",
+    "slug": "sports",
+    "games_count": 21777,
+    "image_background": "https://media.rawg.io/media/games/05a/05a6ca96307b25626d1af5607a8c96a8.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Fighting",
+    "slug": "fighting",
+    "games_count": 11760,
+    "image_background": "https://media.rawg.io/media/games/297/297a51aa1f0999016d5a35e2e1d6d8ab.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Family",
+    "slug": "family",
+    "games_count": 5404,
+    "image_background": "https://media.rawg.io/media/games/3c1/3c139f67a73f0bf5ce0d8f2abf83c0d0.jpg"
+  },
+  {
+    "id": 28,
+    "name": "Board Games",
+    "slug": "board-games",
+    "games_count": 8382,
+    "image_background": "https://media.rawg.io/media/screenshots/ce7/ce7d6b1018d907d7a1e2addd87079c95.jpeg"
+  },
+  {
+    "id": 34,
+    "name": "Educational",
+    "slug": "educational",
+    "games_count": 15684,
+    "image_background": "https://media.rawg.io/media/games/60a/60a0b8f88184f25621b498c2ee1ebb05.jpg"
+  },
+  {
+    "id": 17,
+    "name": "Card",
+    "slug": "card",
+    "games_count": 4533,
+    "image_background": "https://media.rawg.io/media/screenshots/ccf/ccf34a116ebff82c41cbe60aaf24a5df.jpeg"
+  }
+]
