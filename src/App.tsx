@@ -1,17 +1,30 @@
-import { useEffect, useState } from 'react';
-import { axiosInstance } from './services/axiosInstance';
+import { fetchGames } from './services/fetchGames';
+import { useQuery } from '@tanstack/react-query';
 
+interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+  image_background: string;
+}
+
+interface Game {
+  id: number;
+  slug: string;
+  name: string;
+  released: Date;
+  background_image: string;
+  rating: number;
+  platforms: { platform: Platform }[];
+}
 function App() {
-  const [data, setData] = useState([]);
+  const {
+    data: games,
+    isLoading,
+    isError,
+  } = useQuery<Game[]>({ queryKey: ['games'], queryFn: fetchGames });
 
-  useEffect(() => {
-    axiosInstance
-      .get('/games')
-      .then((res) => setData(res.data.results))
-      .catch((err) => console.log(err));
-  }, []);
-
-  console.log(data);
+  console.log(games);
 
   return (
     <>
