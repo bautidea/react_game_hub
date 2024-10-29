@@ -8,6 +8,7 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { fetchGames } from '../services/fetchGames';
 import { Game } from '../types';
+import { PlatformMapper } from './PlatformMapper';
 
 export function Main() {
   const {
@@ -16,8 +17,6 @@ export function Main() {
     isError,
     error,
   } = useQuery<Game[]>({ queryKey: ['games'], queryFn: fetchGames });
-
-  console.log(games);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>{`Error ${error}`}</div>;
@@ -34,9 +33,9 @@ export function Main() {
           />
 
           <CardContent>
-            <Typography variant="h1" component="h2">
-              {game.name}
-            </Typography>
+            <PlatformMapper
+              parentPlatforms={game.parent_platforms.map((p) => p.platform)}
+            />
           </CardContent>
         </Card>
       ))}
