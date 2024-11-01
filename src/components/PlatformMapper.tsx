@@ -6,7 +6,7 @@ import { GiBlast, GiClaymoreExplosive } from 'react-icons/gi';
 import { SiNintendo, SiSega } from 'react-icons/si';
 import { TbTriangleSquareCircleFilled } from 'react-icons/tb';
 import { ParentPlatforms } from '../types';
-import { Badge, Box } from '@mui/material';
+import { Badge, Box, Tooltip } from '@mui/material';
 
 interface Props {
   parentPlatforms: ParentPlatforms[];
@@ -28,15 +28,24 @@ export function PlatformMapper({ parentPlatforms }: Props) {
   };
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        gap: '8px',
+        alignItems: 'center',
+      }}
+    >
       {parentPlatforms.map((platform) => {
         const Icon = iconMapper[platform.slug];
 
         return (
           Icon && (
-            <Badge key={platform.id}>
-              <Icon />
-            </Badge>
+            <Tooltip key={platform.slug} title={platform.name}>
+              <Badge>
+                <Icon size={'25px'} />
+              </Badge>
+            </Tooltip>
           )
         );
       })}

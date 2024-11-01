@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardContent,
   CardMedia,
@@ -9,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchGames } from '../services/fetchGames';
 import { Game } from '../types';
 import { PlatformMapper } from './PlatformMapper';
+import { CriticScore } from './CriticScore';
 
 export function Main() {
   const {
@@ -24,18 +26,39 @@ export function Main() {
   return (
     <Container>
       {games?.map((game) => (
-        <Card key={game.id} sx={{ maxHeight: '300px', maxWidth: '250px' }}>
+        <Card key={game.id} sx={{ maxHeight: '600px', maxWidth: '400px' }}>
           <CardMedia
             component="img"
-            height={'150px'}
             alt={`${game.slug} game cover`}
             image={game.background_image}
+            sx={{
+              width: '100%',
+              aspectRatio: '16/9',
+            }}
           />
 
-          <CardContent>
-            <PlatformMapper
-              parentPlatforms={game.parent_platforms.map((p) => p.platform)}
-            />
+          <CardContent sx={{ marginTop: '8px' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignContent: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <PlatformMapper
+                parentPlatforms={game.parent_platforms.map((p) => p.platform)}
+              />
+              <CriticScore criticScore={game.metacritic} />
+            </Box>
+
+            <Typography
+              variant="h3"
+              component="h3"
+              sx={{ fontSize: '2.2rem', marginTop: '10px' }}
+            >
+              {game.name}
+            </Typography>
           </CardContent>
         </Card>
       ))}
