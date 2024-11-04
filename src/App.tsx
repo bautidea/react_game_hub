@@ -10,12 +10,19 @@ function App() {
         <Nav />
       </Grid2>
       <Grid2
-        size={{ xs: 0, md: 4 }}
+        size={{ xs: 0, md: 2 }}
         sx={{ display: { xs: 'none', md: 'block' } }}
       >
         <Aside />
       </Grid2>
-      <Grid2 size={{ xs: 12, md: 8 }}>
+      <Grid2
+        size={{ xs: 12, md: 10 }}
+        sx={{
+          display: 'flex',
+          alignContent: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Main />
       </Grid2>
     </Grid2>

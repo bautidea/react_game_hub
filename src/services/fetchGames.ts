@@ -5,6 +5,9 @@ export async function fetchGames() {
 
   const response = await axiosInstance.get('/games', {
     signal: controller.signal,
+    params: {
+      page_size: 60,
+    },
   });
 
   return response.data.results;

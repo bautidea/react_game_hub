@@ -5,8 +5,13 @@ interface Props {
 }
 
 export function CriticScore({ criticScore }: Props) {
-  const color =
-    criticScore < 35 ? 'orange' : criticScore < 60 ? 'yellow' : 'green';
+  const color = !criticScore
+    ? 'transparent'
+    : criticScore < 35
+    ? 'orange'
+    : criticScore < 60
+    ? 'yellow'
+    : 'green';
 
   return (
     <Badge
