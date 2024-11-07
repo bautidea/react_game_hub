@@ -1,19 +1,30 @@
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Skeleton,
+  Typography,
+} from '@mui/material';
 import { PlatformMapper } from './PlatformMapper';
 import { CriticScore } from './CriticScore';
 import { Game } from '../types';
 import { useViewPortWidth } from '../hooks/useViewPortWidth';
 
-export function GameCard({ game }: { game: Game }) {
+interface Props {
+  game?: Game;
+}
+
+export function GameCard({ game }: Props) {
   const { ViewportWidth } = useViewPortWidth();
 
   const textBoxWidth =
     ViewportWidth >= 1535
-      ? '16vw'
+      ? '15vw'
       : ViewportWidth >= 1200
       ? '23vw'
       : ViewportWidth >= 900
-      ? '28vh'
+      ? '25vh'
       : '460px';
 
   return (
@@ -30,14 +41,30 @@ export function GameCard({ game }: { game: Game }) {
         },
       }}
     >
-      <CardMedia
-        component="img"
-        alt={`${game.slug} game cover`}
-        image={game.background_image}
-        sx={{
-          aspectRatio: '16/9',
-        }}
-      />
+      {game ? (
+        <CardMedia
+          component="img"
+          alt={`${game.slug} game cover`}
+          image={game.background_image}
+          sx={{
+            // aspectRatio: '16/9',
+            height: '15rem',
+            paddingInline: '10px',
+            paddingTop: '10px',
+            borderRadius: '15px',
+          }}
+        />
+      ) : (
+        <Skeleton
+          variant="rounded"
+          sx={{
+            width: 'auto',
+            height: '15rem',
+            marginInline: '10px',
+            marginTop: '10px',
+          }}
+        />
+      )}
 
       <CardContent sx={{ marginTop: '8px' }}>
         <Box
@@ -48,10 +75,19 @@ export function GameCard({ game }: { game: Game }) {
             justifyContent: 'space-between',
           }}
         >
-          <PlatformMapper
-            parentPlatforms={game.parent_platforms.map((p) => p.platform)}
-          />
-          <CriticScore criticScore={game.metacritic} />
+          {game ? (
+            <>
+              <PlatformMapper
+                parentPlatforms={game.parent_platforms.map((p) => p.platform)}
+              />
+              <CriticScore criticScore={game.metacritic} />
+            </>
+          ) : (
+            <>
+              <Skeleton variant="rounded" height={'25px'} width={'40%'} />
+              <Skeleton variant="rounded" height={'25px'} width={'20%'} />
+            </>
+          )}
         </Box>
 
         <Typography
@@ -68,7 +104,7 @@ export function GameCard({ game }: { game: Game }) {
             whiteSpace: 'nowrap',
           }}
         >
-          {game.name}
+          {game ? game.name : <Skeleton variant="rounded" />}
         </Typography>
       </CardContent>
     </Card>
