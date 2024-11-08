@@ -4,13 +4,22 @@ export interface ParentPlatforms {
   slug: string;
 }
 
+export interface genres {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+}
+
 export interface Game {
   id: number;
   slug: string;
   name: string;
-  released: Date;
+  released: string;
   background_image: string;
   rating: number;
   metacritic: number;
   parent_platforms: { platform: ParentPlatforms }[];
+  genres: genres[];
 }

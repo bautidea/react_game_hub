@@ -24,6 +24,11 @@ export function Main() {
             size={{ xs: 12, md: 6, lg: 4, xl: 3 }}
             sx={{
               justifyItems: 'center',
+              height: {
+                xs: 'auto',
+                md: '26rem',
+              },
+              alignItems: 'center',
             }}
           >
             <GameCard game={isLoading ? undefined : game} />
