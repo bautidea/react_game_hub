@@ -10,6 +10,7 @@ import { PlatformMapper } from './PlatformMapper';
 import { CriticScore } from './CriticScore';
 import { Game } from '../types';
 import { useViewPortWidth } from '../hooks/useViewPortWidth';
+import { RatingEmojiMapper } from './RatingEmojiMapper';
 
 interface Props {
   game?: Game;
@@ -106,6 +107,14 @@ export function GameCard({ game }: Props) {
         >
           {game ? game.name : <Skeleton variant="rounded" />}
         </Typography>
+
+        <Box width={'36px'} height={'36px'} marginTop={'5px'}>
+          {game ? (
+            <RatingEmojiMapper rating={game.rating} />
+          ) : (
+            <Skeleton variant="rounded" height={'100%'} width={'100%'} />
+          )}
+        </Box>
       </CardContent>
     </Card>
   );
