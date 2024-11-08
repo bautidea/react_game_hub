@@ -108,7 +108,7 @@ export function GameCard({ game }: Props) {
           {game ? game.name : <Skeleton variant="rounded" />}
         </Typography>
 
-        <Box width={'36px'} height={'36px'} marginTop={'5px'}>
+        <Box width={'30px'} height={'30px'} marginTop={'5px'}>
           {game ? (
             <RatingEmojiMapper rating={game.rating} />
           ) : (
