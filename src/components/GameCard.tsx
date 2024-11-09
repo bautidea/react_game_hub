@@ -10,7 +10,6 @@ import {
 import { PlatformMapper } from './PlatformMapper';
 import { CriticScore } from './CriticScore';
 import { Game } from '../types';
-import { useViewPortWidth } from '../hooks/useViewPortWidth';
 import { RatingEmojiMapper } from './RatingEmojiMapper';
 import { useState } from 'react';
 
@@ -21,17 +20,6 @@ interface Props {
 export function GameCard({ game }: Props) {
   const [showGameAdditionalInfo, setShowGameAdditionalInfo] =
     useState<boolean>(false);
-
-  const { ViewportWidth } = useViewPortWidth();
-
-  const textBoxWidth =
-    ViewportWidth >= 1535
-      ? '15vw'
-      : ViewportWidth >= 1200
-      ? '21vw'
-      : ViewportWidth >= 900
-      ? '25vh'
-      : '100%';
 
   return (
     <span
@@ -47,11 +35,7 @@ export function GameCard({ game }: Props) {
           border: '1px #4a4e69 solid',
           ':hover': {
             transform: 'scale(1.05)',
-          },
-          ':hover .expandableText': {
-            overflow: 'visible',
-            whiteSpace: 'normal',
-            maxWidth: '100%',
+            zIndex: 1,
           },
         }}
       >
@@ -81,7 +65,7 @@ export function GameCard({ game }: Props) {
           />
         )}
 
-        <CardContent sx={{ marginTop: '8px' }}>
+        <CardContent>
           <Box
             sx={{
               display: 'flex',
@@ -108,21 +92,26 @@ export function GameCard({ game }: Props) {
           <Typography
             variant="h3"
             component="h3"
-            className="expandableText"
             sx={{
-              width: `${textBoxWidth}`,
+              width: `95%`,
               fontSize: '2rem',
               marginTop: '15px',
               fontWeight: '500',
-              overflow: 'hidden',
+              overflow: `${showGameAdditionalInfo ? 'visible' : ' hidden'}`,
               textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
+              whiteSpace: `${showGameAdditionalInfo ? 'normal' : ' nowrap'}`,
             }}
           >
             {game ? game.name : <Skeleton variant="rounded" />}
           </Typography>
 
-          <Box width={'30px'} height={'30px'} marginTop={'5px'}>
+          <Box
+            sx={{
+              width: '30px',
+              height: '30px',
+              marginTop: '5px',
+            }}
+          >
             {game ? (
               <RatingEmojiMapper rating={game.rating} />
             ) : (
@@ -131,15 +120,10 @@ export function GameCard({ game }: Props) {
           </Box>
 
           {showGameAdditionalInfo && (
-            <Box
-              sx={{
-                marginTop: '10px',
-              }}
-            >
+            <Box sx={{ marginTop: '25px' }}>
               <Box
                 sx={{
                   display: 'flex',
-                  flexDirection: 'row',
                   justifyContent: 'space-between',
                 }}
               >

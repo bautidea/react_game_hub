@@ -14,7 +14,7 @@ export function Main() {
     <Grid2
       container
       columnSpacing={4}
-      rowSpacing={3}
+      // rowSpacing={3}
       sx={{ margin: '30px 30px' }}
     >
       {(isLoading ? [...Array(numberOfSkeletons)] : games)?.map(
@@ -24,11 +24,12 @@ export function Main() {
             size={{ xs: 12, md: 6, lg: 4, xl: 3 }}
             sx={{
               justifyItems: 'center',
+              alignContent: 'center',
               height: {
-                xs: 'auto',
-                md: '26rem',
+                md: '39vw',
+                lg: '28vw',
+                xl: '21vw',
               },
-              alignItems: 'center',
             }}
           >
             <GameCard game={isLoading ? undefined : game} />
