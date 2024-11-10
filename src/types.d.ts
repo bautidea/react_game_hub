@@ -4,7 +4,7 @@ export interface ParentPlatforms {
   slug: string;
 }
 
-export interface genres {
+export interface Genres {
   id: number;
   name: string;
   slug: string;
@@ -21,14 +21,9 @@ export interface Game {
   rating: number;
   metacritic: number;
   parent_platforms: { platform: ParentPlatforms }[];
-  genres: genres[];
-}
-
-interface selectedGenre {
-  id: number;
-  slug: string;
+  genres: Genres[];
 }
 
 export interface GameQuery {
-  selectedGenre: selectedGenre | null;
+  selectedIdGenre: number | null;
 }

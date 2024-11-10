@@ -2,8 +2,12 @@ import { Grid2 } from '@mui/material';
 import { Nav } from './components/Nav';
 import { Aside } from './components/Aside';
 import { Main } from './components/Main';
+import { useGameQuery } from './hooks/useGameQuery';
 
 function App() {
+  const { gameQuery } = useGameQuery();
+  console.log(gameQuery);
+
   return (
     <Grid2 container>
       <Grid2 size={12}>

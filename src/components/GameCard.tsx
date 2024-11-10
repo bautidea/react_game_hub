@@ -9,18 +9,23 @@ import {
 } from '@mui/material';
 import { PlatformMapper } from './PlatformMapper';
 import { CriticScore } from './CriticScore';
-import { Game } from '../types';
+import { Game, Genres } from '../types';
 import { RatingEmojiMapper } from './RatingEmojiMapper';
 import { useState } from 'react';
 import { formatDate } from '../utils/formatDate';
 
 interface Props {
   game?: Game;
+  handleGenreSelect: (clickedGenre: Genres) => void;
 }
 
-export function GameCard({ game }: Props) {
+export function GameCard({ game, handleGenreSelect }: Props) {
   const [showGameAdditionalInfo, setShowGameAdditionalInfo] =
     useState<boolean>(false);
+
+  const handleGenreClick = (clickedGenre: Genres) => {
+    handleGenreSelect(clickedGenre);
+  };
 
   return (
     <span
@@ -40,31 +45,37 @@ export function GameCard({ game }: Props) {
           },
         }}
       >
-        {game ? (
-          <CardMedia
-            component="img"
-            alt={`${game.slug} game cover`}
-            image={game.background_image}
-            sx={{
-              aspectRatio: '16/9',
-              width: '100%',
-              height: 'auto',
-              paddingInline: '10px',
-              paddingTop: '10px',
-              borderRadius: '15px',
-            }}
-          />
-        ) : (
-          <Skeleton
-            variant="rounded"
-            sx={{
-              width: 'auto',
-              height: '15rem',
-              marginInline: '10px',
-              marginTop: '10px',
-            }}
-          />
-        )}
+        <Box
+          sx={{
+            width: '100%',
+            height: 'auto',
+            paddingInline: '10px',
+            paddingTop: '10px',
+            borderRadius: '15px',
+          }}
+        >
+          {game ? (
+            <CardMedia
+              component="img"
+              alt={`${game.slug} game cover`}
+              image={game.background_image}
+              sx={{
+                width: '100%',
+                height: 'auto',
+                aspectRatio: '16/9',
+              }}
+            />
+          ) : (
+            <Skeleton
+              variant="rounded"
+              sx={{
+                width: '100%',
+                height: 'auto',
+                aspectRatio: '16/9',
+              }}
+            />
+          )}
+        </Box>
 
         <CardContent>
           <Box
@@ -178,6 +189,7 @@ export function GameCard({ game }: Props) {
                           style={{
                             textDecoration: 'underline',
                           }}
+                          onClick={() => handleGenreClick(genre)}
                         >
                           {genre.name}
                         </span>
