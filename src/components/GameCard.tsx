@@ -38,6 +38,7 @@ export function GameCard({ game, handleGenreSelect }: Props) {
         elevation={showGameAdditionalInfo ? 5 : 1}
         sx={{
           borderRadius: '15px',
+          width: `${game ? 'auto' : '100%'}`,
           border: '1px #4a4e69 solid',
           ':hover': {
             transform: 'scale(1.05)',
@@ -69,8 +70,8 @@ export function GameCard({ game, handleGenreSelect }: Props) {
             <Skeleton
               variant="rounded"
               sx={{
-                width: '100%',
-                height: 'auto',
+                width: 'auto',
+                height: '100%',
                 aspectRatio: '16/9',
               }}
             />

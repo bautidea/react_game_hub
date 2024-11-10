@@ -4,10 +4,11 @@ import { GameCard } from './GameCard';
 // import './loader.css';
 
 export function Main() {
-  const { games, isLoading, isError, error } = useGames();
+  // const { games, isLoading, isError, error } = useGames();
 
-  if (isError) return <div>{`Error ${error}`}</div>;
-
+  // if (isError) return <div>{`Error ${error}`}</div>;
+  const games = null;
+  const isLoading = true;
   const numberOfSkeletons = 12;
 
   return (
