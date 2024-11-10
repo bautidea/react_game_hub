@@ -1,7 +1,7 @@
 import { Grid2 } from '@mui/material';
 import { useGames } from '../hooks/useGames';
 import { GameCard } from './GameCard';
-import './loader.css';
+// import './loader.css';
 
 export function Main() {
   const { games, isLoading, isError, error } = useGames();
@@ -14,7 +14,10 @@ export function Main() {
     <Grid2
       container
       columnSpacing={4}
-      // rowSpacing={3}
+      rowSpacing={{
+        xs: 3,
+        md: 1,
+      }}
       sx={{ margin: '30px 30px' }}
     >
       {(isLoading ? [...Array(numberOfSkeletons)] : games)?.map(
@@ -27,8 +30,8 @@ export function Main() {
               alignContent: 'center',
               height: {
                 md: '39vw',
-                lg: '28vw',
-                xl: '21vw',
+                lg: '27vw',
+                xl: '20vw',
               },
             }}
           >

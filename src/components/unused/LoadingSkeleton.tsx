@@ -1,5 +1,5 @@
 import { Box, Grid2 } from '@mui/material';
-import { useViewPortWidth } from '../../hooks/useViewPortWidth';
+import { useViewPortWidth } from '../../utils/useViewPortWidth';
 
 export function LoadingSkeleton({
   numberOfSkeletons,

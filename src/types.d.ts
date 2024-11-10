@@ -23,3 +23,12 @@ export interface Game {
   parent_platforms: { platform: ParentPlatforms }[];
   genres: genres[];
 }
+
+interface selectedGenre {
+  id: number;
+  slug: string;
+}
+
+export interface GameQuery {
+  selectedGenre: selectedGenre | null;
+}

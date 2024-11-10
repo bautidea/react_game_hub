@@ -12,6 +12,7 @@ import { CriticScore } from './CriticScore';
 import { Game } from '../types';
 import { RatingEmojiMapper } from './RatingEmojiMapper';
 import { useState } from 'react';
+import { formatDate } from '../utils/formatDate';
 
 interface Props {
   game?: Game;
@@ -94,7 +95,7 @@ export function GameCard({ game }: Props) {
             component="h3"
             sx={{
               width: `95%`,
-              fontSize: '2rem',
+              fontSize: '2.2rem',
               marginTop: '15px',
               fontWeight: '500',
               overflow: `${showGameAdditionalInfo ? 'visible' : ' hidden'}`,
@@ -119,7 +120,7 @@ export function GameCard({ game }: Props) {
             )}
           </Box>
 
-          {showGameAdditionalInfo && (
+          {showGameAdditionalInfo && game && (
             <Box sx={{ marginTop: '25px' }}>
               <Box
                 sx={{
@@ -127,8 +128,12 @@ export function GameCard({ game }: Props) {
                   justifyContent: 'space-between',
                 }}
               >
-                <Typography>Release date:</Typography>
-                <Typography>{game?.released}</Typography>
+                <Typography
+                  sx={{ color: 'rgb(255,255,255,0.4)', fontSize: '1rem' }}
+                >
+                  Release date:
+                </Typography>
+                <Typography>{formatDate(game?.released)}</Typography>
               </Box>
 
               <Divider sx={{ margin: '5px 0' }} />
@@ -140,7 +145,11 @@ export function GameCard({ game }: Props) {
                   justifyContent: 'space-between',
                 }}
               >
-                <Typography>Genres:</Typography>
+                <Typography
+                  sx={{ color: 'rgb(255,255,255,0.4)', fontSize: '1rem' }}
+                >
+                  Genres:
+                </Typography>
 
                 <Box
                   sx={{
@@ -152,9 +161,31 @@ export function GameCard({ game }: Props) {
                   }}
                 >
                   {game?.genres.map((genre, ind) => (
-                    <span>
-                      <a>{genre.name}</a>
-                      {ind === game.genres.length - 1 ? '' : ',\u00A0'}
+                    <span key={genre.id}>
+                      <Typography
+                        component="p"
+                        variant="caption"
+                        sx={{
+                          fontSize: '1rem',
+                          display: 'inline',
+                          ':hover': {
+                            cursor: 'pointer',
+                            color: 'rgb(255,255,255,0.7)',
+                          },
+                        }}
+                      >
+                        <span
+                          style={{
+                            textDecoration: 'underline',
+                          }}
+                        >
+                          {genre.name}
+                        </span>
+                      </Typography>
+
+                      <Typography sx={{ display: 'inline' }}>
+                        {ind === game.genres.length - 1 ? '' : ',\u00A0'}
+                      </Typography>
                     </span>
                   ))}
                 </Box>
