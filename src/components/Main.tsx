@@ -1,9 +1,13 @@
 import { Grid2 } from '@mui/material';
 import { useGames } from '../hooks/useGames';
 import { GameCard } from './GameCard';
+import { Genres } from '../types';
 // import './loader.css';
 
-export function Main() {
+interface Props {
+  handleGenreSelect: (clickedGenre: Genres) => void;
+}
+export function Main({ handleGenreSelect }: Props) {
   const { games, isLoading, isError, error } = useGames();
 
   if (isError) return <div>{`Error ${error}`}</div>;
@@ -15,9 +19,7 @@ export function Main() {
     <Grid2
       container
       columnSpacing={4}
-      rowSpacing={{
-        xs: 4,
-      }}
+      rowSpacing={4}
       sx={{ margin: '30px 30px' }}
     >
       {(isLoading ? [...Array(numberOfSkeletons)] : games)?.map(
@@ -28,6 +30,7 @@ export function Main() {
             sx={{
               justifyItems: 'center',
               alignContent: 'center',
+              aspectRatio: { md: '1/1.02' },
               height: {
                 md: '37vw',
                 lg: '26vw',
@@ -35,7 +38,10 @@ export function Main() {
               },
             }}
           >
-            <GameCard game={isLoading ? undefined : game} />
+            <GameCard
+              game={isLoading ? undefined : game}
+              handleGenreSelect={handleGenreSelect}
+            />
           </Grid2>
         )
       )}
