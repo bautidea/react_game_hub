@@ -4,11 +4,11 @@ import { GameCard } from './GameCard';
 // import './loader.css';
 
 export function Main() {
-  // const { games, isLoading, isError, error } = useGames();
+  const { games, isLoading, isError, error } = useGames();
 
-  // if (isError) return <div>{`Error ${error}`}</div>;
-  const games = null;
-  const isLoading = true;
+  if (isError) return <div>{`Error ${error}`}</div>;
+  // const games = null;
+  // const isLoading = true;
   const numberOfSkeletons = 12;
 
   return (
@@ -16,8 +16,7 @@ export function Main() {
       container
       columnSpacing={4}
       rowSpacing={{
-        xs: 3,
-        md: 1,
+        xs: 4,
       }}
       sx={{ margin: '30px 30px' }}
     >
@@ -30,8 +29,8 @@ export function Main() {
               justifyItems: 'center',
               alignContent: 'center',
               height: {
-                md: '39vw',
-                lg: '27vw',
+                md: '37vw',
+                lg: '26vw',
                 xl: '20vw',
               },
             }}
