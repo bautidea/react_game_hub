@@ -7,6 +7,7 @@ export async function fetchGames() {
     signal: controller.signal,
     params: {
       page_size: 60,
+      ordering: null,
     },
   });
 

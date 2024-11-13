@@ -63,7 +63,7 @@ export function GameCard({ game, handleGenreSelect }: Props) {
               sx={{
                 width: '100%',
                 height: 'auto',
-                aspectRatio: '16/9',
+                aspectRatio: '14/9',
               }}
             />
           ) : (
@@ -74,7 +74,7 @@ export function GameCard({ game, handleGenreSelect }: Props) {
                   xl: '17vw',
                 },
                 height: 'auto',
-                aspectRatio: '16/9',
+                aspectRatio: '14/9',
               }}
             />
           )}

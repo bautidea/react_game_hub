@@ -5,6 +5,8 @@ import thumbsUp from '../assets/Emojis/thumbs-up.webp';
 import { Tooltip } from '@mui/material';
 
 export function RatingEmojiMapper({ rating }: { rating: number }) {
+  if (!rating) return;
+
   const getEmojiProps = () => {
     if (rating <= 2) {
       return { src: stop, alt: 'Skip' };

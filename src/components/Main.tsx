@@ -1,12 +1,14 @@
-import { Grid2 } from '@mui/material';
+import { Box, Grid2 } from '@mui/material';
 import { useGames } from '../hooks/useGames';
 import { GameCard } from './GameCard';
 import { Genres } from '../types';
-// import './loader.css';
+import { DisplayGridIcon } from '../assets/Emojis/DisplayGridIcon';
+import { DisplayFlexIcon } from '../assets/Emojis/DisplayFlexIcon';
 
 interface Props {
   handleGenreSelect: (clickedGenre: Genres) => void;
 }
+
 export function Main({ handleGenreSelect }: Props) {
   const { games, isLoading, isError, error } = useGames();
 
@@ -16,35 +18,36 @@ export function Main({ handleGenreSelect }: Props) {
   const numberOfSkeletons = 12;
 
   return (
-    <Grid2
-      container
-      columnSpacing={4}
-      rowSpacing={4}
-      sx={{ margin: '30px 30px' }}
-    >
-      {(isLoading ? [...Array(numberOfSkeletons)] : games)?.map(
-        (game, index) => (
-          <Grid2
-            key={isLoading ? index : game.id}
-            size={{ xs: 12, md: 6, lg: 4, xl: 3 }}
-            sx={{
-              justifyItems: 'center',
-              alignContent: 'center',
-              aspectRatio: { md: '1/1.02' },
-              height: {
-                md: '37vw',
-                lg: '26vw',
-                xl: '20vw',
-              },
-            }}
-          >
-            <GameCard
-              game={isLoading ? undefined : game}
-              handleGenreSelect={handleGenreSelect}
-            />
-          </Grid2>
-        )
-      )}
-    </Grid2>
+    <Box style={{ width: '100%', height: '100%' }}>
+      <Grid2
+        container
+        columnSpacing={4}
+        rowSpacing={4}
+        sx={{ margin: '30px 30px' }}
+      >
+        {(isLoading ? [...Array(numberOfSkeletons)] : games)?.map(
+          (game, index) => (
+            <Grid2
+              key={isLoading ? index : game.id}
+              size={{ xs: 12, md: 6, lg: 4, xl: 3 }}
+              sx={{
+                justifyItems: 'center',
+                alignContent: 'center',
+                height: {
+                  md: '39vw',
+                  lg: '27vw',
+                  xl: '21vw',
+                },
+              }}
+            >
+              <GameCard
+                game={isLoading ? undefined : game}
+                handleGenreSelect={handleGenreSelect}
+              />
+            </Grid2>
+          )
+        )}
+      </Grid2>
+    </Box>
   );
 }
