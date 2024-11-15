@@ -1,15 +1,22 @@
 import { Box, Grid2 } from '@mui/material';
 import { useGames } from '../hooks/useGames';
 import { GameCard } from './GameCard';
-import { Genres } from '../types';
+import { GameQuery, Genres } from '../types';
 import { DisplayGridIcon } from '../assets/Emojis/DisplayGridIcon';
 import { DisplayFlexIcon } from '../assets/Emojis/DisplayFlexIcon';
+import { OrderSelector } from './OrderSelector';
 
 interface Props {
+  gameQuery: GameQuery;
   handleGenreSelect: (clickedGenre: Genres) => void;
+  handleOrderSelect: (clickedOrder: string) => void;
 }
 
-export function Main({ handleGenreSelect }: Props) {
+export function Main({
+  gameQuery,
+  handleGenreSelect,
+  handleOrderSelect,
+}: Props) {
   const { games, isLoading, isError, error } = useGames();
 
   if (isError) return <div>{`Error ${error}`}</div>;
@@ -19,6 +26,10 @@ export function Main({ handleGenreSelect }: Props) {
 
   return (
     <Box style={{ width: '100%', height: '100%' }}>
+      <OrderSelector
+        value={gameQuery.selectedOrder}
+        handleOrderSelect={handleOrderSelect}
+      />
       <Grid2
         container
         columnSpacing={4}

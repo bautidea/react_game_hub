@@ -4,6 +4,7 @@ import { GameQuery, Genres } from '../types';
 export function useGameQuery() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
     selectedIdGenre: null,
+    selectedOrder: null,
   });
 
   const handleGenreSelect = (clickedGenre: Genres) => {
@@ -11,8 +12,13 @@ export function useGameQuery() {
     setGameQuery({ ...gameQuery, selectedIdGenre: id });
   };
 
+  const handleOrderSelect = (clickedOrder: string) => {
+    setGameQuery({ ...gameQuery, selectedOrder: clickedOrder });
+  };
+
   return {
     gameQuery,
     handleGenreSelect,
+    handleOrderSelect,
   };
 }

@@ -5,7 +5,7 @@ import { Main } from './components/Main';
 import { useGameQuery } from './hooks/useGameQuery';
 
 function App() {
-  const { gameQuery, handleGenreSelect } = useGameQuery();
+  const { gameQuery, handleGenreSelect, handleOrderSelect } = useGameQuery();
   console.log(gameQuery);
 
   return (
@@ -27,7 +27,11 @@ function App() {
           justifyContent: 'center',
         }}
       >
-        <Main handleGenreSelect={handleGenreSelect} />
+        <Main
+          gameQuery={gameQuery}
+          handleGenreSelect={handleGenreSelect}
+          handleOrderSelect={handleOrderSelect}
+        />
       </Grid2>
     </Grid2>
   );
