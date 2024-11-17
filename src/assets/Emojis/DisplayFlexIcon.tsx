@@ -1,8 +1,8 @@
 export function DisplayFlexIcon() {
   return (
     <svg
-      width="56"
-      height="56"
+      width="70"
+      height="70"
       viewBox="0 0 56 56"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

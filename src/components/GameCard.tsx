@@ -63,18 +63,21 @@ export function GameCard({ game, handleGenreSelect }: Props) {
               sx={{
                 width: '100%',
                 height: 'auto',
-                aspectRatio: '14/9',
+                aspectRatio: {
+                  md: '14/9',
+                  xl: '12/9',
+                },
               }}
             />
           ) : (
             <Skeleton
               variant="rounded"
               sx={{
-                width: {
-                  xl: '17vw',
-                },
                 height: 'auto',
-                aspectRatio: '14/9',
+                aspectRatio: {
+                  md: '14/9',
+                  xl: '12/9',
+                },
               }}
             />
           )}

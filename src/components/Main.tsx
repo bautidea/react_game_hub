@@ -1,10 +1,11 @@
-import { Box, Grid2 } from '@mui/material';
+import { Box, Button, Grid2, Typography } from '@mui/material';
 import { useGames } from '../hooks/useGames';
 import { GameCard } from './GameCard';
 import { GameQuery, Genres } from '../types';
 import { DisplayGridIcon } from '../assets/Emojis/DisplayGridIcon';
 import { DisplayFlexIcon } from '../assets/Emojis/DisplayFlexIcon';
 import { OrderSelector } from './OrderSelector';
+import { useState } from 'react';
 
 interface Props {
   gameQuery: GameQuery;
@@ -12,31 +13,86 @@ interface Props {
   handleOrderSelect: (clickedOrder: string) => void;
 }
 
+const NUMBEROFSKELETONS = 12;
+
 export function Main({
   gameQuery,
   handleGenreSelect,
   handleOrderSelect,
 }: Props) {
+  const [displayGrid, setDisplayGrid] = useState(true);
+
   const { games, isLoading, isError, error } = useGames();
 
   if (isError) return <div>{`Error ${error}`}</div>;
-  // const games = null;
-  // const isLoading = true;
-  const numberOfSkeletons = 12;
+
+  function changeDisplay() {
+    setDisplayGrid(!displayGrid);
+  }
 
   return (
-    <Box style={{ width: '100%', height: '100%' }}>
-      <OrderSelector
-        value={gameQuery.selectedOrder}
-        handleOrderSelect={handleOrderSelect}
-      />
+    <Box
+      sx={{
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: '20px 0 0',
+          margin: '0 30px 15px',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ minWidth: '10%' }}>
+          <OrderSelector
+            value={gameQuery.selectedOrder}
+            handleOrderSelect={handleOrderSelect}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '10px',
+            alignItems: 'center',
+          }}
+        >
+          <Typography
+            variant="subtitle1"
+            component="p"
+            sx={{ marginRight: '10px', fontSize: '1.2rem', fontWeight: '500' }}
+          >
+            Display options:
+          </Typography>
+          <Button
+            sx={{ padding: 0 }}
+            onClick={changeDisplay}
+            disabled={displayGrid === true}
+          >
+            <DisplayGridIcon />
+          </Button>
+          <Button
+            sx={{ padding: 0 }}
+            onClick={changeDisplay}
+            disabled={displayGrid === false}
+          >
+            <DisplayFlexIcon />
+          </Button>
+        </Box>
+      </Box>
+
       <Grid2
         container
         columnSpacing={4}
-        rowSpacing={4}
+        rowSpacing={{ md: 4, xl: 9 }}
         sx={{ margin: '30px 30px' }}
       >
-        {(isLoading ? [...Array(numberOfSkeletons)] : games)?.map(
+        {(isLoading ? [...Array(NUMBEROFSKELETONS)] : games)?.map(
           (game, index) => (
             <Grid2
               key={isLoading ? index : game.id}
@@ -47,7 +103,7 @@ export function Main({
                 height: {
                   md: '39vw',
                   lg: '27vw',
-                  xl: '21vw',
+                  xl: '20vw',
                 },
               }}
             >

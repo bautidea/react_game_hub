@@ -26,5 +26,5 @@ export interface Game {
 
 export interface GameQuery {
   selectedIdGenre: number | null;
-  selectedOrder: string | null;
+  selectedOrder: string;
 }

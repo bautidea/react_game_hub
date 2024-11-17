@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 
 interface Props {
-  value: string | null;
+  value: string;
   handleOrderSelect: (clickedOrder: string) => void;
 }
 
@@ -16,29 +16,43 @@ export function OrderSelector({ value, handleOrderSelect }: Props) {
     handleOrderSelect(event.target.value);
   }
 
-  const sortingMapper: { [key: string]: string } = {
-    'added': 'Added',
-    'created': 'Created',
-    'metacritic': 'Relevance',
-    'name': 'Name',
-    'released': 'Released',
-    'rating': 'Rating',
-    'updated': 'Updated',
-  };
+  const sortingMapper = [
+    { value: '-added', label: 'Added' },
+    { value: 'name', label: 'Name' },
+    { value: '-released', label: 'Released' },
+    { value: '-rating', label: 'Rating' },
+    { value: '', label: 'Relevance' },
+    { value: '-metacritic', label: 'Popularity' },
+  ];
 
   return (
-    <FormControl sx={{ minWidth: '120px' }}>
-      <InputLabel id="game-order-selector-label">Order by:</InputLabel>
+    <FormControl fullWidth sx={{ paddingTop: '20px' }}>
+      <InputLabel
+        shrink
+        id="game-order-selector-label"
+        sx={{
+          fontSize: '1.8rem',
+        }}
+      >
+        Order by:
+      </InputLabel>
+
       <Select
         labelId="game-order-selector-label"
         id="game-order-selector"
         onChange={handleChange}
-        value={value != null ? value : ''}
+        value={value}
         label="Order by"
+        displayEmpty
+        sx={{ fontSize: '1.2rem' }}
       >
-        {Object.keys(sortingMapper).map((keyName, ind) => (
-          <MenuItem key={ind} value={keyName}>
-            {sortingMapper[keyName]}
+        {sortingMapper.map((sortValue, ind) => (
+          <MenuItem
+            key={ind}
+            value={sortValue.value}
+            sx={{ fontSize: '1.2rem' }}
+          >
+            {sortValue.label}
           </MenuItem>
         ))}
       </Select>
