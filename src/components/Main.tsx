@@ -27,7 +27,7 @@ export function Main({
   if (isError) return <div>{`Error ${error}`}</div>;
 
   function changeDisplay() {
-    setDisplayGrid(!displayGrid);
+    setDisplayGrid((prevValue) => !prevValue);
   }
 
   return (
@@ -65,19 +65,29 @@ export function Main({
           <Typography
             variant="subtitle1"
             component="p"
-            sx={{ marginRight: '10px', fontSize: '1.2rem', fontWeight: '500' }}
+            sx={{ marginRight: '10px', fontSize: '1.1rem', fontWeight: '500' }}
           >
             Display options:
           </Typography>
+
           <Button
-            sx={{ padding: 0 }}
+            sx={{
+              padding: 0,
+              opacity: `${displayGrid ? 1 : 0.5}`,
+              transition: 'opacity 0.3s ease',
+            }}
             onClick={changeDisplay}
             disabled={displayGrid === true}
           >
             <DisplayGridIcon />
           </Button>
+
           <Button
-            sx={{ padding: 0 }}
+            sx={{
+              padding: 0,
+              opacity: `${!displayGrid ? 1 : 0.5}`,
+              transition: 'opacity 0.3s ease',
+            }}
             onClick={changeDisplay}
             disabled={displayGrid === false}
           >
@@ -86,35 +96,69 @@ export function Main({
         </Box>
       </Box>
 
-      <Grid2
-        container
-        columnSpacing={4}
-        rowSpacing={{ md: 4, xl: 9 }}
-        sx={{ margin: '30px 30px' }}
+      <Box
+        sx={{
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          display: 'flex',
+        }}
       >
-        {(isLoading ? [...Array(NUMBEROFSKELETONS)] : games)?.map(
-          (game, index) => (
-            <Grid2
-              key={isLoading ? index : game.id}
-              size={{ xs: 12, md: 6, lg: 4, xl: 3 }}
-              sx={{
-                justifyItems: 'center',
-                alignContent: 'center',
-                height: {
-                  md: '39vw',
-                  lg: '27vw',
-                  xl: '20vw',
-                },
-              }}
-            >
-              <GameCard
-                game={isLoading ? undefined : game}
-                handleGenreSelect={handleGenreSelect}
-              />
-            </Grid2>
-          )
+        {displayGrid && (
+          <Grid2
+            container
+            columnSpacing={4}
+            rowSpacing={{ md: 4, xl: 9 }}
+            sx={{ margin: '30px 30px' }}
+          >
+            {(isLoading ? [...Array(NUMBEROFSKELETONS)] : games)?.map(
+              (game, index) => (
+                <Grid2
+                  key={isLoading ? index : game.id}
+                  size={{ xs: 12, md: 6, lg: 4, xl: 3 }}
+                  sx={{
+                    justifyItems: 'center',
+                    alignContent: 'center',
+                    height: {
+                      md: '39vw',
+                      lg: '27vw',
+                      xl: '20vw',
+                    },
+                  }}
+                >
+                  <GameCard
+                    game={isLoading ? undefined : game}
+                    handleGenreSelect={handleGenreSelect}
+                    displayGrid={displayGrid}
+                  />
+                </Grid2>
+              )
+            )}
+          </Grid2>
         )}
-      </Grid2>
+        {!displayGrid && (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '40px',
+              width: '50%',
+            }}
+          >
+            {(isLoading ? [...Array(NUMBEROFSKELETONS)] : games)?.map(
+              (game, index) => (
+                <GameCard
+                  key={isLoading ? index : game.id}
+                  game={isLoading ? undefined : game}
+                  handleGenreSelect={handleGenreSelect}
+                  displayGrid={displayGrid}
+                />
+              )
+            )}
+          </Box>
+        )}
+      </Box>
     </Box>
   );
 }

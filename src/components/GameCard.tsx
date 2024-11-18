@@ -17,9 +17,10 @@ import { formatDate } from '../utils/formatDate';
 interface Props {
   game?: Game;
   handleGenreSelect: (clickedGenre: Genres) => void;
+  displayGrid: boolean;
 }
 
-export function GameCard({ game, handleGenreSelect }: Props) {
+export function GameCard({ game, handleGenreSelect, displayGrid }: Props) {
   const [showGameAdditionalInfo, setShowGameAdditionalInfo] =
     useState<boolean>(false);
 
@@ -63,9 +64,9 @@ export function GameCard({ game, handleGenreSelect }: Props) {
               sx={{
                 width: '100%',
                 height: 'auto',
-                aspectRatio: {
-                  md: '14/9',
-                  xl: '12/9',
+                aspectRatio: displayGrid ? '14/9' : '16/9',
+                '@media (min-width: 1536px)': {
+                  aspectRatio: displayGrid ? '12/9' : '16/9',
                 },
               }}
             />
@@ -73,10 +74,11 @@ export function GameCard({ game, handleGenreSelect }: Props) {
             <Skeleton
               variant="rounded"
               sx={{
+                minWidth: `${displayGrid ? '5vw' : '40vw'}`,
                 height: 'auto',
-                aspectRatio: {
-                  md: '14/9',
-                  xl: '12/9',
+                aspectRatio: displayGrid ? '14/9' : '16/9',
+                '@media (min-width: 1536px)': {
+                  aspectRatio: displayGrid ? '12/9' : '16/9',
                 },
               }}
             />
@@ -137,33 +139,55 @@ export function GameCard({ game, handleGenreSelect }: Props) {
             )}
           </Box>
 
-          {showGameAdditionalInfo && game && (
-            <Box sx={{ marginTop: '25px' }}>
+          {(!displayGrid || showGameAdditionalInfo) && game && (
+            <Box
+              sx={{
+                marginTop: '25px',
+                display: 'flex',
+                flexDirection: `${displayGrid ? 'column' : 'row'}`,
+                gap: `${displayGrid ? 0 : '30px'}`,
+              }}
+            >
               <Box
                 sx={{
                   display: 'flex',
                   justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
                 <Typography
-                  sx={{ color: 'rgb(255,255,255,0.4)', fontSize: '1rem' }}
+                  sx={{
+                    color: 'rgb(255,255,255,0.4)',
+                    fontSize: '1.2rem',
+                    marginRight: '10px',
+                  }}
                 >
                   Release date:
                 </Typography>
-                <Typography>{formatDate(game?.released)}</Typography>
+                <Typography
+                  sx={{
+                    fontSize: '1.3rem',
+                  }}
+                >
+                  {formatDate(game?.released)}
+                </Typography>
               </Box>
 
-              <Divider sx={{ margin: '5px 0' }} />
+              {displayGrid && <Divider sx={{ margin: '5px 0' }} />}
 
               <Box
                 sx={{
                   display: 'flex',
-                  flexDirection: 'row',
                   justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
                 <Typography
-                  sx={{ color: 'rgb(255,255,255,0.4)', fontSize: '1rem' }}
+                  sx={{
+                    color: 'rgb(255,255,255,0.4)',
+                    fontSize: '1.2rem',
+                    marginRight: '10px',
+                  }}
                 >
                   Genres:
                 </Typography>
@@ -183,7 +207,7 @@ export function GameCard({ game, handleGenreSelect }: Props) {
                         component="p"
                         variant="caption"
                         sx={{
-                          fontSize: '1rem',
+                          fontSize: '1.3rem',
                           display: 'inline',
                           ':hover': {
                             cursor: 'pointer',

@@ -31,7 +31,7 @@ export function OrderSelector({ value, handleOrderSelect }: Props) {
         shrink
         id="game-order-selector-label"
         sx={{
-          fontSize: '1.8rem',
+          fontSize: '1.2rem',
         }}
       >
         Order by:
@@ -50,7 +50,7 @@ export function OrderSelector({ value, handleOrderSelect }: Props) {
           <MenuItem
             key={ind}
             value={sortValue.value}
-            sx={{ fontSize: '1.2rem' }}
+            sx={{ fontSize: '1.2rem', padding: '10px' }}
           >
             {sortValue.label}
           </MenuItem>
