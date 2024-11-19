@@ -28,11 +28,24 @@ export function GameCard({ game, handleGenreSelect, displayGrid }: Props) {
     handleGenreSelect(clickedGenre);
   };
 
+  function showAdditionalInfo() {
+    setShowGameAdditionalInfo(true);
+  }
+
+  function hideAdditionalInfo() {
+    setShowGameAdditionalInfo(false);
+  }
+
   return (
-    <span
-      onMouseEnter={() => setShowGameAdditionalInfo(true)}
-      onMouseLeave={() => {
-        setShowGameAdditionalInfo(false);
+    <Box
+      onMouseEnter={showAdditionalInfo}
+      onMouseLeave={hideAdditionalInfo}
+      sx={{
+        width: '100%',
+        '@media (max-width: 900px)': {
+          width: '80%',
+          justifySelf: 'center',
+        },
       }}
     >
       <Card
@@ -41,9 +54,10 @@ export function GameCard({ game, handleGenreSelect, displayGrid }: Props) {
           borderRadius: '15px',
           width: `${game ? 'auto' : '100%'}`,
           border: '1px #4a4e69 solid',
+          zIndex: showGameAdditionalInfo ? 1 : 0,
+          position: 'relative',
           ':hover': {
             transform: 'scale(1.05)',
-            zIndex: 1,
           },
         }}
       >
@@ -138,6 +152,20 @@ export function GameCard({ game, handleGenreSelect, displayGrid }: Props) {
               <Skeleton variant="rounded" height={'100%'} width={'100%'} />
             )}
           </Box>
+
+          {!showGameAdditionalInfo && (
+            <Box
+              sx={{
+                width: 'max-content',
+                justifySelf: 'center',
+                fontSize: '1.2rem',
+                textDecoration: 'underline dotted',
+                display: { xs: 'visible', md: 'none' },
+              }}
+            >
+              <span onClick={showAdditionalInfo}>View more</span>
+            </Box>
+          )}
 
           {(!displayGrid || showGameAdditionalInfo) && game && (
             <Box
@@ -234,8 +262,22 @@ export function GameCard({ game, handleGenreSelect, displayGrid }: Props) {
               </Box>
             </Box>
           )}
+
+          {showGameAdditionalInfo && (
+            <Box
+              sx={{
+                width: 'max-content',
+                justifySelf: 'center',
+                fontSize: '1.2rem',
+                textDecoration: 'underline dotted',
+                display: { xs: 'visible', md: 'none' },
+              }}
+            >
+              <span onClick={hideAdditionalInfo}>View less</span>
+            </Box>
+          )}
         </CardContent>
       </Card>
-    </span>
+    </Box>
   );
 }

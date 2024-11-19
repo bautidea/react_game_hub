@@ -5,7 +5,8 @@ import { GameQuery, Genres } from '../types';
 import { DisplayGridIcon } from '../assets/Emojis/DisplayGridIcon';
 import { DisplayFlexIcon } from '../assets/Emojis/DisplayFlexIcon';
 import { OrderSelector } from './OrderSelector';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useViewPortWidth } from '../utils/useViewPortWidth';
 
 interface Props {
   gameQuery: GameQuery;
@@ -23,6 +24,13 @@ export function Main({
   const [displayGrid, setDisplayGrid] = useState(true);
 
   const { games, isLoading, isError, error } = useGames();
+  const { viewportWidth } = useViewPortWidth();
+
+  useEffect(() => {
+    if (viewportWidth < 900) {
+      setDisplayGrid(true);
+    }
+  }, [viewportWidth]);
 
   if (isError) return <div>{`Error ${error}`}</div>;
 
@@ -56,7 +64,7 @@ export function Main({
 
         <Box
           sx={{
-            display: 'flex',
+            display: { xs: 'none', md: 'flex' },
             flexDirection: 'row',
             gap: '10px',
             alignItems: 'center',
@@ -108,7 +116,7 @@ export function Main({
           <Grid2
             container
             columnSpacing={4}
-            rowSpacing={{ md: 4, xl: 9 }}
+            rowSpacing={{ xs: 4, xl: 9 }}
             sx={{ margin: '30px 30px' }}
           >
             {(isLoading ? [...Array(NUMBEROFSKELETONS)] : games)?.map(
@@ -120,6 +128,7 @@ export function Main({
                     justifyItems: 'center',
                     alignContent: 'center',
                     height: {
+                      xs: '71.5vw',
                       md: '39vw',
                       lg: '27vw',
                       xl: '20vw',

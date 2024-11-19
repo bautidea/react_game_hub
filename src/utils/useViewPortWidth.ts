@@ -2,11 +2,16 @@ import { useEffect, useState } from 'react';
 
 // Function to detect viewport width and based on it calculate skeletons width.
 export function useViewPortWidth() {
-  const [ViewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
     const handleResize = () => {
-      setViewportWidth(window.innerWidth);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setViewportWidth(window.innerWidth);
+      }, 1000);
     };
 
     // Add event listener for viewport resize.
@@ -14,9 +19,10 @@ export function useViewPortWidth() {
 
     // Cleanup.
     return () => {
+      clearTimeout(timeout);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  return { ViewportWidth };
+  return { viewportWidth };
 }
