@@ -76,7 +76,7 @@ export function GameCard({
           zIndex: showGameAdditionalInfo ? 1 : 0,
           position: 'relative',
           ':hover': {
-            transform: 'scale(1.05)',
+            transform: isMobile ? 'none' : 'scale(1.05)',
           },
         }}
       >
