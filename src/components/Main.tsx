@@ -21,9 +21,9 @@ export function Main({
   handleGenreSelect,
   handleOrderSelect,
 }: Props) {
-  const [displayGrid, setDisplayGrid] = useState(true);
-
-  const { games, isLoading, isError, error } = useGames();
+  // States for controlling grid display and showing additional game info.
+  const [displayGrid, setDisplayGrid] = useState<boolean>(true);
+  const [expandedCardId, setExpandedCardId] = useState<number | null>(null);
   const { viewportWidth } = useViewPortWidth();
 
   useEffect(() => {
@@ -32,11 +32,18 @@ export function Main({
     }
   }, [viewportWidth]);
 
-  if (isError) return <div>{`Error ${error}`}</div>;
-
   function changeDisplay() {
     setDisplayGrid((prevValue) => !prevValue);
   }
+
+  function handleSelectedCard(cardId: number | null) {
+    setExpandedCardId(cardId);
+  }
+
+  // Fetched games.
+  const { games, isLoading, isError, error } = useGames();
+
+  if (isError) return <div>{`Error ${error}`}</div>;
 
   return (
     <Box
@@ -139,6 +146,9 @@ export function Main({
                     game={isLoading ? undefined : game}
                     handleGenreSelect={handleGenreSelect}
                     displayGrid={displayGrid}
+                    isMobile={viewportWidth < 900}
+                    selectedCardId={expandedCardId}
+                    handleSelectedCard={handleSelectedCard}
                   />
                 </Grid2>
               )
@@ -162,6 +172,9 @@ export function Main({
                   game={isLoading ? undefined : game}
                   handleGenreSelect={handleGenreSelect}
                   displayGrid={displayGrid}
+                  isMobile={viewportWidth < 900}
+                  selectedCardId={expandedCardId}
+                  handleSelectedCard={handleSelectedCard}
                 />
               )
             )}

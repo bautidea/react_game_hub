@@ -11,35 +11,54 @@ import { PlatformMapper } from './PlatformMapper';
 import { CriticScore } from './CriticScore';
 import { Game, Genres } from '../types';
 import { RatingEmojiMapper } from './RatingEmojiMapper';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { formatDate } from '../utils/formatDate';
 
 interface Props {
   game?: Game;
   handleGenreSelect: (clickedGenre: Genres) => void;
   displayGrid: boolean;
+  isMobile: boolean;
+  selectedCardId: number | null;
+  handleSelectedCard: (cardId: number | null) => void;
 }
 
-export function GameCard({ game, handleGenreSelect, displayGrid }: Props) {
-  const [showGameAdditionalInfo, setShowGameAdditionalInfo] =
-    useState<boolean>(false);
-
+export function GameCard({
+  game,
+  handleGenreSelect,
+  displayGrid,
+  isMobile,
+  selectedCardId,
+  handleSelectedCard,
+}: Props) {
   const handleGenreClick = (clickedGenre: Genres) => {
     handleGenreSelect(clickedGenre);
   };
 
-  function showAdditionalInfo() {
-    setShowGameAdditionalInfo(true);
+  function handleCardHoverIn(gameId: number) {
+    if (!isMobile) handleSelectedCard(gameId);
   }
 
-  function hideAdditionalInfo() {
-    setShowGameAdditionalInfo(false);
+  function handleCardHoverOut() {
+    if (!isMobile) handleSelectedCard(null);
   }
+
+  function handleMobileShowAdditionalInfo(gameId: number) {
+    handleSelectedCard(gameId);
+  }
+
+  function handleMobileHideAdditionalInfo() {
+    handleSelectedCard(null);
+  }
+
+  const showGameAdditionalInfo = selectedCardId === game?.id;
+
+  useEffect(() => {}, [showGameAdditionalInfo]);
 
   return (
     <Box
-      onMouseEnter={showAdditionalInfo}
-      onMouseLeave={hideAdditionalInfo}
+      onMouseEnter={game ? () => handleCardHoverIn(game.id) : undefined}
+      onMouseLeave={handleCardHoverOut}
       sx={{
         width: '100%',
         '@media (max-width: 900px)': {
@@ -153,17 +172,22 @@ export function GameCard({ game, handleGenreSelect, displayGrid }: Props) {
             )}
           </Box>
 
-          {!showGameAdditionalInfo && (
+          {!showGameAdditionalInfo && isMobile && (
             <Box
               sx={{
                 width: 'max-content',
                 justifySelf: 'center',
                 fontSize: '1.2rem',
                 textDecoration: 'underline dotted',
-                display: { xs: 'visible', md: 'none' },
               }}
             >
-              <span onClick={showAdditionalInfo}>View more</span>
+              {game ? (
+                <span onClick={() => handleMobileShowAdditionalInfo(game.id)}>
+                  View more
+                </span>
+              ) : (
+                <Skeleton variant="rounded" height={'1.2rem'} width={'200px'} />
+              )}
             </Box>
           )}
 
@@ -263,17 +287,16 @@ export function GameCard({ game, handleGenreSelect, displayGrid }: Props) {
             </Box>
           )}
 
-          {showGameAdditionalInfo && (
+          {showGameAdditionalInfo && isMobile && (
             <Box
               sx={{
                 width: 'max-content',
                 justifySelf: 'center',
                 fontSize: '1.2rem',
                 textDecoration: 'underline dotted',
-                display: { xs: 'visible', md: 'none' },
               }}
             >
-              <span onClick={hideAdditionalInfo}>View less</span>
+              <span onClick={handleMobileHideAdditionalInfo}>View less</span>
             </Box>
           )}
         </CardContent>

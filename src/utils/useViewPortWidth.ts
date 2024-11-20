@@ -11,7 +11,7 @@ export function useViewPortWidth() {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         setViewportWidth(window.innerWidth);
-      }, 1000);
+      }, 250);
     };
 
     // Add event listener for viewport resize.
