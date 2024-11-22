@@ -5,7 +5,7 @@ import { FaApple, FaLinux, FaPlaystation, FaWindows } from 'react-icons/fa';
 import { GiBlast, GiClaymoreExplosive } from 'react-icons/gi';
 import { SiNintendo, SiSega } from 'react-icons/si';
 import { TbTriangleSquareCircleFilled } from 'react-icons/tb';
-import { ParentPlatforms } from '../types';
+import { ParentPlatforms } from '../../types';
 import { Badge, Box, Tooltip } from '@mui/material';
 
 interface Props {

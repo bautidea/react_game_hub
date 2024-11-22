@@ -1,7 +1,7 @@
-import bullsEye from '../assets/Emojis/bulls-eye.webp';
-import meh from '../assets/Emojis/meh.webp';
-import stop from '../assets/Emojis/stop.png';
-import thumbsUp from '../assets/Emojis/thumbs-up.webp';
+import bullsEye from '../../assets/Emojis/bulls-eye.webp';
+import meh from '../../assets//Emojis/meh.webp';
+import stop from '../../assets//Emojis/stop.png';
+import thumbsUp from '../../assets//Emojis/thumbs-up.webp';
 import { Tooltip } from '@mui/material';
 
 export function RatingEmojiMapper({ rating }: { rating: number }) {

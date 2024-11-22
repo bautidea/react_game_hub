@@ -9,10 +9,10 @@ import {
 } from '@mui/material';
 import { PlatformMapper } from './PlatformMapper';
 import { CriticScore } from './CriticScore';
-import { Game, Genres } from '../types';
+import { Game, Genres } from '../../types';
 import { RatingEmojiMapper } from './RatingEmojiMapper';
 import { useEffect } from 'react';
-import { formatDate } from '../utils/formatDate';
+import { formatDate } from '../../utils/formatDate';
 
 interface Props {
   game?: Game;
@@ -97,6 +97,7 @@ export function GameCard({
               sx={{
                 width: '100%',
                 height: 'auto',
+                objectFit: 'cover',
                 aspectRatio: displayGrid ? '14/9' : '16/9',
                 '@media (min-width: 1536px)': {
                   aspectRatio: displayGrid ? '12/9' : '16/9',

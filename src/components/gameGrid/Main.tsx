@@ -1,12 +1,12 @@
 import { Box, Button, Grid2, Typography } from '@mui/material';
-import { useGames } from '../hooks/useGames';
+import { useGames } from '../../hooks/useGames';
 import { GameCard } from './GameCard';
-import { GameQuery, Genres } from '../types';
-import { DisplayGridIcon } from '../assets/Emojis/DisplayGridIcon';
-import { DisplayFlexIcon } from '../assets/Emojis/DisplayFlexIcon';
+import { GameQuery, Genres } from '../../types';
+import { DisplayGridIcon } from '../../assets/Emojis/DisplayGridIcon';
+import { DisplayFlexIcon } from '../../assets/Emojis/DisplayFlexIcon';
 import { OrderSelector } from './OrderSelector';
 import { useEffect, useState } from 'react';
-import { useViewPortWidth } from '../utils/useViewPortWidth';
+import { useViewPortWidth } from '../../utils/useViewPortWidth';
 
 interface Props {
   gameQuery: GameQuery;
@@ -62,7 +62,7 @@ export function Main({
           alignItems: 'center',
         }}
       >
-        <Box sx={{ minWidth: '10%' }}>
+        <Box sx={{ minWidth: '15%' }}>
           <OrderSelector
             value={gameQuery.selectedOrder}
             handleOrderSelect={handleOrderSelect}

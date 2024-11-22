@@ -5,6 +5,7 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
+import greenDot from '../../assets//Emojis/greenDot.png';
 
 interface Props {
   value: string;
@@ -26,12 +27,20 @@ export function OrderSelector({ value, handleOrderSelect }: Props) {
   ];
 
   return (
-    <FormControl fullWidth sx={{ paddingTop: '20px' }}>
+    <FormControl
+      fullWidth
+      sx={{
+        paddingTop: '20px',
+      }}
+    >
       <InputLabel
         shrink
+        variant="standard"
         id="game-order-selector-label"
-        sx={{
-          fontSize: '1.2rem',
+        style={{
+          fontSize: '1.4rem',
+          color: 'rgba(255, 255, 255, 0.8)',
+          top: '-5px',
         }}
       >
         Order by:
@@ -44,15 +53,43 @@ export function OrderSelector({ value, handleOrderSelect }: Props) {
         value={value}
         label="Order by"
         displayEmpty
-        sx={{ fontSize: '1.2rem' }}
+        sx={{
+          fontSize: '1.2rem',
+          backgroundColor: '#212529',
+        }}
+        renderValue={(selectedValue) => {
+          const selected = sortingMapper.find(
+            (sortValue) => sortValue.value === selectedValue
+          );
+          return selected?.label;
+        }}
       >
         {sortingMapper.map((sortValue, ind) => (
           <MenuItem
             key={ind}
             value={sortValue.value}
-            sx={{ fontSize: '1.2rem', padding: '10px' }}
+            sx={{
+              fontSize: '1.2rem',
+              padding: '10px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
           >
             {sortValue.label}
+            {value === sortValue.value ? (
+              <img
+                src={greenDot}
+                style={{
+                  objectFit: 'cover',
+                  width: '15px',
+                  aspectRatio: '1/1',
+                  opacity: '0.8',
+                }}
+              />
+            ) : (
+              ''
+            )}
           </MenuItem>
         ))}
       </Select>
