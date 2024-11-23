@@ -1,5 +1,5 @@
 import { Grid2 } from '@mui/material';
-import { Nav } from './components/Nav';
+import { Nav } from './components/Aside/Nav';
 import { Aside } from './components/Aside';
 import { Main } from './components/gameGrid/Main';
 import { useGameQuery } from './hooks/useGameQuery';

@@ -13,6 +13,7 @@ import { Game, Genres } from '../../types';
 import { RatingEmojiMapper } from './RatingEmojiMapper';
 import { useEffect } from 'react';
 import { formatDate } from '../../utils/formatDate';
+import { getCroppedImageUrl } from '../../utils/image-url';
 
 interface Props {
   game?: Game;
@@ -93,7 +94,7 @@ export function GameCard({
             <CardMedia
               component="img"
               alt={`${game.slug} game cover`}
-              image={game.background_image}
+              image={getCroppedImageUrl(game.background_image)}
               sx={{
                 width: '100%',
                 height: 'auto',
