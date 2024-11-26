@@ -8,7 +8,7 @@ export async function fetchData(
 ) {
   const request = await axiosInstance.get(endPoint, {
     signal,
-    params: { ...requestConfig },
+    ...requestConfig,
   });
 
   return request.data.results;
