@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchData } from '../services/fetchData';
+import { ParentPlatforms } from '../types';
 
 export function usePlatforms() {
   const {
@@ -7,7 +8,7 @@ export function usePlatforms() {
     isLoading,
     error,
     isError,
-  } = useQuery({
+  } = useQuery<ParentPlatforms[]>({
     queryKey: ['platforms'],
     queryFn: ({ signal }) => fetchData('/platforms/lists/parents', signal),
   });
