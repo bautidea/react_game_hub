@@ -10,7 +10,11 @@ interface Props {
 export function SideBar({ elements, listTitle, isLoading }: Props) {
   return (
     <Box>
-      <Typography variant="h4" component="p">
+      <Typography
+        variant="h4"
+        component="p"
+        sx={{ fontWeight: '400', letterSpacing: '1px' }}
+      >
         {listTitle}
       </Typography>
     </Box>

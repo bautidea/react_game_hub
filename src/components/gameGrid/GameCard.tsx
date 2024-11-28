@@ -155,6 +155,7 @@ export function GameCard({
               overflow: `${showGameAdditionalInfo ? 'visible' : ' hidden'}`,
               textOverflow: 'ellipsis',
               whiteSpace: `${showGameAdditionalInfo ? 'normal' : ' nowrap'}`,
+              letterSpacing: '1px',
             }}
           >
             {game ? game.name : <Skeleton variant="rounded" />}

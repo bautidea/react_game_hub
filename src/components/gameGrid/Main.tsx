@@ -82,7 +82,12 @@ export function Main({
           <Typography
             variant="subtitle1"
             component="p"
-            sx={{ marginRight: '10px', fontSize: '1.1rem', fontWeight: '500' }}
+            sx={{
+              marginRight: '10px',
+              fontSize: '1.1rem',
+              fontWeight: '500',
+              letterSpacing: '1px',
+            }}
           >
             Display options:
           </Typography>
