@@ -3,7 +3,7 @@ import { useGenres } from '../../hooks/useGenres';
 import { usePlatforms } from '../../hooks/usePlatforms';
 import { SideBar } from './SideBar';
 
-export function Nav() {
+export function Aside() {
   const {
     genres,
     isLoading: isGenreLoading,
@@ -19,9 +19,21 @@ export function Nav() {
   if (isGenreError || isPlatformError) return;
 
   return (
-    <Box height={'100%'}>
-      <SideBar elements={genres} isLoading={isLoading} />
-      <SideBar elements={platforms} isLoading={isLoading} />
+    <Box
+      sx={{
+        height: '100%',
+        margin: '20px 15px 20px 40px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+      }}
+    >
+      <SideBar elements={genres} listTitle={'Genres'} isLoading={isLoading} />
+      <SideBar
+        elements={platforms}
+        listTitle={'Platforms'}
+        isLoading={isLoading}
+      />
     </Box>
   );
 }

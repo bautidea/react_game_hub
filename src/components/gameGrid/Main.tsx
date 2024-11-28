@@ -50,6 +50,8 @@ export function Main({
       sx={{
         width: '100%',
         height: '100%',
+        marginRight: '40px',
+        marginLeft: '15px',
       }}
     >
       <Box
@@ -58,7 +60,7 @@ export function Main({
           flexDirection: 'row',
           justifyContent: 'space-between',
           padding: '20px 0 0',
-          margin: '0 30px 15px',
+          marginBottom: '30px',
           alignItems: 'center',
         }}
       >
@@ -120,12 +122,7 @@ export function Main({
         }}
       >
         {displayGrid && (
-          <Grid2
-            container
-            columnSpacing={4}
-            rowSpacing={{ xs: 4, xl: 9 }}
-            sx={{ margin: '30px 30px' }}
-          >
+          <Grid2 container columnSpacing={4} rowSpacing={{ xs: 4, xl: 9 }}>
             {(isLoading ? [...Array(NUMBEROFSKELETONS)] : games)?.map(
               (game, index) => (
                 <Grid2
