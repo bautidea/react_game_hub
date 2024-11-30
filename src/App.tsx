@@ -5,7 +5,12 @@ import { useGameQuery } from './hooks/useGameQuery';
 import { Aside } from './components/Aside/Aside';
 
 function App() {
-  const { gameQuery, handleGenreSelect, handleOrderSelect } = useGameQuery();
+  const {
+    gameQuery,
+    handleGenreSelect,
+    handlePlatformSelect,
+    handleOrderSelect,
+  } = useGameQuery();
   console.log(gameQuery);
 
   return (
@@ -18,7 +23,10 @@ function App() {
         size={{ xs: 0, md: 2 }}
         sx={{ display: { xs: 'none', md: 'block' } }}
       >
-        <Aside />
+        <Aside
+          handleGenreSelect={handleGenreSelect}
+          handlePlatformSelect={handlePlatformSelect}
+        />
       </Grid2>
 
       <Grid2

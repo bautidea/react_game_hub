@@ -1,9 +1,16 @@
 import { Box } from '@mui/material';
 import { useGenres } from '../../hooks/useGenres';
 import { usePlatforms } from '../../hooks/usePlatforms';
-import { SideBar } from './SideBar';
+import { GenresSideBar } from './GenresSideBar';
+import { Genres, ParentPlatforms } from '../../types';
+import { PlatformsSideBar } from './PlatformsSideBar';
 
-export function Aside() {
+interface Props {
+  handleGenreSelect: (clickedGenre: Genres) => void;
+  handlePlatformSelect: (clickedPlatform: ParentPlatforms) => void;
+}
+
+export function Aside({ handleGenreSelect, handlePlatformSelect }: Props) {
   const {
     genres,
     isLoading: isGenreLoading,
@@ -28,8 +35,12 @@ export function Aside() {
         gap: '20px',
       }}
     >
-      <SideBar elements={genres} listTitle={'Genres'} isLoading={isLoading} />
-      <SideBar
+      <GenresSideBar
+        elements={genres}
+        listTitle={'Genres'}
+        isLoading={isLoading}
+      />
+      <PlatformsSideBar
         elements={platforms}
         listTitle={'Platforms'}
         isLoading={isLoading}

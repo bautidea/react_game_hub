@@ -11,6 +11,7 @@ import {
 import { GiBlast, GiClaymoreExplosive } from 'react-icons/gi';
 import { SiNintendo, SiSega } from 'react-icons/si';
 import { TbTriangleSquareCircleFilled } from 'react-icons/tb';
+import { SiAtari } from 'react-icons/si';
 
 export const iconMapper: { [key: string]: IconType } = {
   'playstation': FaPlaystation,
@@ -25,4 +26,6 @@ export const iconMapper: { [key: string]: IconType } = {
   '3do': TbTriangleSquareCircleFilled,
   'neo-geo': GiBlast,
   'web': BsGlobe,
+  'ios': FaApple,
+  'atari': SiAtari,
 };
