@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import { useGenres } from '../../hooks/useGenres';
 import { usePlatforms } from '../../hooks/usePlatforms';
-import { GenresSideBar } from './GenresSideBar';
 import { Genres, ParentPlatforms } from '../../types';
+import { GenresSideBar } from './GenresSideBar';
 import { PlatformsSideBar } from './PlatformsSideBar';
 
 interface Props {
@@ -22,7 +22,8 @@ export function Aside({ handleGenreSelect, handlePlatformSelect }: Props) {
     isError: isPlatformError,
   } = usePlatforms();
 
-  const isLoading = isGenreLoading || isPlatformLoading;
+  // const isLoading = isGenreLoading || isPlatformLoading;
+  const isLoading = true;
   if (isGenreError || isPlatformError) return;
 
   return (
