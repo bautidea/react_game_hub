@@ -6,7 +6,11 @@ interface ListItemProps {
   itemName: string;
   children: ReactNode;
 }
-export function ListItem({ isHovered, itemName, children }: ListItemProps) {
+export function AsideListItem({
+  isHovered,
+  itemName,
+  children,
+}: ListItemProps) {
   return (
     <>
       <ListItemIcon

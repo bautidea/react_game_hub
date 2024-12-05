@@ -1,10 +1,10 @@
 import { Genres } from '../../types';
-import { ListItem } from './ListItem';
+import { AsideListItem } from './AsideListItem';
 import { SideBar } from './SideBar';
 
 function RenderGenreItem(element: Genres, isHovered: boolean) {
   return (
-    <ListItem isHovered={isHovered} itemName={element.name}>
+    <AsideListItem isHovered={isHovered} itemName={element.name}>
       <img
         src={element.image_background}
         style={{
@@ -13,19 +13,21 @@ function RenderGenreItem(element: Genres, isHovered: boolean) {
           objectFit: 'cover',
         }}
       />
-    </ListItem>
+    </AsideListItem>
   );
 }
 interface GenresSideBarProps {
   elements: null | undefined | Genres[];
   listTitle: string;
   isLoading: boolean;
+  handleGenreSelect: (clickedGenre: Genres) => void;
 }
 
 export function GenresSideBar({
   elements,
   listTitle,
   isLoading,
+  handleGenreSelect,
 }: GenresSideBarProps) {
   return (
     <SideBar
@@ -33,6 +35,7 @@ export function GenresSideBar({
       listTitle={listTitle}
       isLoading={isLoading}
       renderItem={RenderGenreItem}
+      handleItemClick={handleGenreSelect}
     />
   );
 }

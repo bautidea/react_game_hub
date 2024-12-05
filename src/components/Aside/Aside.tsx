@@ -22,8 +22,7 @@ export function Aside({ handleGenreSelect, handlePlatformSelect }: Props) {
     isError: isPlatformError,
   } = usePlatforms();
 
-  // const isLoading = isGenreLoading || isPlatformLoading;
-  const isLoading = true;
+  const isLoading = isGenreLoading || isPlatformLoading;
   if (isGenreError || isPlatformError) return;
 
   return (
@@ -40,11 +39,13 @@ export function Aside({ handleGenreSelect, handlePlatformSelect }: Props) {
         elements={genres}
         listTitle={'Genres'}
         isLoading={isLoading}
+        handleGenreSelect={handleGenreSelect}
       />
       <PlatformsSideBar
         elements={platforms}
         listTitle={'Platforms'}
         isLoading={isLoading}
+        handlePlatformSelect={handlePlatformSelect}
       />
     </Box>
   );

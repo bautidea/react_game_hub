@@ -1,18 +1,18 @@
 import { ParentPlatforms } from '../../types';
 import { iconMapper } from '../../utils/iconPlatformMapper';
-import { ListItem } from './ListItem';
+import { AsideListItem } from './AsideListItem';
 import { SideBar } from './SideBar';
 
 function RenderPlatformItem(element: ParentPlatforms, isHovered: boolean) {
   const PlatformIcon = iconMapper[element.slug];
 
   return (
-    <ListItem isHovered={isHovered} itemName={element.name}>
+    <AsideListItem isHovered={isHovered} itemName={element.name}>
       <PlatformIcon
         size={`20px`}
         fill={isHovered ? 'black' : 'rgb(255,255,255)'}
       />
-    </ListItem>
+    </AsideListItem>
   );
 }
 
@@ -20,12 +20,14 @@ interface PlatformsSideBarProps {
   elements: null | undefined | ParentPlatforms[];
   listTitle: string;
   isLoading: boolean;
+  handlePlatformSelect: (clickedPlatform: ParentPlatforms) => void;
 }
 
 export function PlatformsSideBar({
   elements,
   listTitle,
   isLoading,
+  handlePlatformSelect,
 }: PlatformsSideBarProps) {
   return (
     <SideBar
@@ -33,6 +35,7 @@ export function PlatformsSideBar({
       listTitle={listTitle}
       isLoading={isLoading}
       renderItem={RenderPlatformItem}
+      handleItemClick={handlePlatformSelect}
     />
   );
 }

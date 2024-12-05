@@ -1,14 +1,23 @@
-import { Box, List, ListItemButton, Skeleton, Typography } from '@mui/material';
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  Skeleton,
+  Typography,
+} from '@mui/material';
 import { ReactNode, useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { ListItem } from './ListItem';
+import { AsideListItem } from './AsideListItem';
 
 interface SidebarProps<T extends { id: number }> {
   elements: null | undefined | T[];
   listTitle: string;
   isLoading: boolean;
   renderItem: (element: T, isHovered: boolean) => ReactNode;
+  handleItemClick: (clickedItem: T) => void;
 }
 
 const NUMBEROFSKELETONS = 4;
@@ -18,6 +27,7 @@ export function SideBar<T extends { id: number }>({
   listTitle,
   isLoading,
   renderItem,
+  handleItemClick,
 }: SidebarProps<T>) {
   const [displayAllItems, setDisplayAllItems] = useState<boolean>(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -26,20 +36,24 @@ export function SideBar<T extends { id: number }>({
   if (isLoading)
     return (
       <Box>
-        <Typography
-          variant="h4"
-          component="p"
-          sx={{ fontWeight: '400', letterSpacing: '1px' }}
-        >
-          {listTitle}
-        </Typography>
+        <Skeleton sx={{ width: '100%', height: '4rem' }} variant="text" />
 
-        {[...Array(NUMBEROFSKELETONS)].map((_, ind) => (
-          <Skeleton
-            key={ind}
-            sx={{ height: '32px', width: '32px', borderRadius: '10px' }}
-          />
-        ))}
+        <List>
+          {[...Array(NUMBEROFSKELETONS)].map((_, ind) => (
+            <ListItem key={ind}>
+              <ListItemIcon>
+                <Skeleton
+                  variant="rounded"
+                  sx={{ height: '32px', width: '32px', borderRadius: '10px' }}
+                />
+              </ListItemIcon>
+              <Skeleton
+                variant="text"
+                sx={{ height: '2rem', width: '100%', borderRadius: '10px' }}
+              />
+            </ListItem>
+          ))}
+        </List>
       </Box>
     );
 
@@ -60,6 +74,7 @@ export function SideBar<T extends { id: number }>({
               key={element.id}
               onMouseEnter={() => setHoveredItem(element.id)}
               onMouseLeave={() => setHoveredItem(null)}
+              onClick={() => handleItemClick(element)}
             >
               {renderItem(element, isHovered)}
             </ListItemButton>
@@ -73,14 +88,14 @@ export function SideBar<T extends { id: number }>({
             onMouseLeave={() => setHoverDisplayAll(false)}
             onClick={() => setDisplayAllItems(true)}
           >
-            <ListItem isHovered={hoverDisplayAll} itemName="Show all">
+            <AsideListItem isHovered={hoverDisplayAll} itemName="Show all">
               <ExpandMoreIcon
                 sx={{
                   fontSize: '32px',
                   color: `${hoverDisplayAll ? 'black' : 'rgb(255,255,255)'}`,
                 }}
               />
-            </ListItem>
+            </AsideListItem>
           </ListItemButton>
         )}
 
@@ -92,6 +107,7 @@ export function SideBar<T extends { id: number }>({
                 key={element.id}
                 onMouseEnter={() => setHoveredItem(element.id)}
                 onMouseLeave={() => setHoveredItem(null)}
+                onClick={() => handleItemClick(element)}
               >
                 {renderItem(element, isHovered)}
               </ListItemButton>
@@ -105,14 +121,14 @@ export function SideBar<T extends { id: number }>({
             onMouseLeave={() => setHoverDisplayAll(false)}
             onClick={() => setDisplayAllItems(false)}
           >
-            <ListItem isHovered={hoverDisplayAll} itemName="Hide">
+            <AsideListItem isHovered={hoverDisplayAll} itemName="Hide">
               <ExpandLessIcon
                 sx={{
                   fontSize: '32px',
                   color: `${hoverDisplayAll ? 'black' : 'rgb(255,255,255)'}`,
                 }}
               />
-            </ListItem>
+            </AsideListItem>
           </ListItemButton>
         )}
       </List>
