@@ -20,7 +20,7 @@ function App() {
       </Grid2>
 
       <Grid2
-        size={{ xs: 0, md: 2 }}
+        size={{ xs: 0, md: 2.3 }}
         sx={{ display: { xs: 'none', md: 'block' } }}
       >
         <Aside
@@ -30,7 +30,7 @@ function App() {
       </Grid2>
 
       <Grid2
-        size={{ xs: 12, md: 10 }}
+        size={{ xs: 12, md: 9.7 }}
         sx={{
           display: 'flex',
           alignContent: 'center',

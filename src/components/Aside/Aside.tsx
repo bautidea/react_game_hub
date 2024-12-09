@@ -29,7 +29,8 @@ export function Aside({ handleGenreSelect, handlePlatformSelect }: Props) {
     <Box
       sx={{
         height: '100%',
-        margin: '20px 15px 20px 40px',
+        margin: '20px 0 20px 40px',
+        paddingRight: '25px',
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',

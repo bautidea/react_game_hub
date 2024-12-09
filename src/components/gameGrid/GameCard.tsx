@@ -63,7 +63,8 @@ export function GameCard({
       sx={{
         width: '100%',
         '@media (max-width: 900px)': {
-          width: '80%',
+          width: 'auto',
+          height: '100%',
           justifySelf: 'center',
         },
       }}

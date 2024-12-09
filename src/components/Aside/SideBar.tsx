@@ -41,10 +41,20 @@ export function SideBar<T extends { id: number }>({
         <List>
           {[...Array(NUMBEROFSKELETONS)].map((_, ind) => (
             <ListItem key={ind}>
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  display: ' flex',
+                }}
+              >
                 <Skeleton
                   variant="rounded"
-                  sx={{ height: '32px', width: '32px', borderRadius: '10px' }}
+                  sx={{
+                    height: '32px',
+                    width: '32px',
+                    borderRadius: '10px',
+                  }}
                 />
               </ListItemIcon>
               <Skeleton

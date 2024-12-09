@@ -50,8 +50,10 @@ export function Main({
       sx={{
         width: '100%',
         height: '100%',
-        marginRight: '40px',
-        marginLeft: '15px',
+        '@media (min-width: 900px)': {
+          marginRight: '40px',
+          paddingLeft: '25px',
+        },
       }}
     >
       <Box
