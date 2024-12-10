@@ -62,10 +62,11 @@ export function GameCard({
       onMouseLeave={handleCardHoverOut}
       sx={{
         width: '100%',
-        '@media (max-width: 900px)': {
-          width: 'auto',
+        '@media (max-width: 1175px)': {
+          width: '80%',
           height: '100%',
           justifySelf: 'center',
+          paddingInline: '10%',
         },
       }}
     >
@@ -97,12 +98,16 @@ export function GameCard({
               alt={`${game.slug} game cover`}
               image={getCroppedImageUrl(game.background_image)}
               sx={{
-                width: '100%',
+                width: '100%', //dummy
                 height: 'auto',
                 objectFit: 'cover',
+                overflow: 'hidden',
                 aspectRatio: displayGrid ? '14/9' : '16/9',
                 '@media (min-width: 1536px)': {
                   aspectRatio: displayGrid ? '12/9' : '16/9',
+                },
+                '@media (max-width:1175px)': {
+                  aspectRatio: '1.3/1',
                 },
               }}
             />
@@ -149,7 +154,7 @@ export function GameCard({
             variant="h3"
             component="h3"
             sx={{
-              width: `95%`,
+              maxWidth: '95%',
               fontSize: '2.2rem',
               marginTop: '15px',
               fontWeight: '500',

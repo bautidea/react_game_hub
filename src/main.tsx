@@ -16,6 +16,15 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 1175,
+      lg: 1325,
+      xl: 1536,
+    },
+  },
 });
 
 const queryClient = new QueryClient();

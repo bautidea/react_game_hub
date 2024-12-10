@@ -27,7 +27,7 @@ export function Main({
   const { viewportWidth } = useViewPortWidth();
 
   useEffect(() => {
-    if (viewportWidth < 900) {
+    if (viewportWidth < 1175) {
       setDisplayGrid(true);
     }
   }, [viewportWidth]);
@@ -50,7 +50,7 @@ export function Main({
       sx={{
         width: '100%',
         height: '100%',
-        '@media (min-width: 900px)': {
+        '@media (min-width: 1175px)': {
           marginRight: '40px',
           paddingLeft: '25px',
         },
@@ -64,6 +64,9 @@ export function Main({
           padding: '20px 0 0',
           marginBottom: '30px',
           alignItems: 'center',
+          '@media (max-width:1175px)': {
+            marginLeft: '45px',
+          },
         }}
       >
         <Box sx={{ minWidth: '15%' }}>
@@ -150,7 +153,7 @@ export function Main({
                     game={isLoading ? undefined : game}
                     handleGenreSelect={handleGenreSelect}
                     displayGrid={displayGrid}
-                    isMobile={viewportWidth < 900}
+                    isMobile={viewportWidth < 1175}
                     selectedCardId={expandedCardId}
                     handleSelectedCard={handleSelectedCard}
                   />
@@ -176,7 +179,7 @@ export function Main({
                   game={isLoading ? undefined : game}
                   handleGenreSelect={handleGenreSelect}
                   displayGrid={displayGrid}
-                  isMobile={viewportWidth < 900}
+                  isMobile={viewportWidth < 1175}
                   selectedCardId={expandedCardId}
                   handleSelectedCard={handleSelectedCard}
                 />
