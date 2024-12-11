@@ -30,7 +30,7 @@ export function Aside({ handleGenreSelect, handlePlatformSelect }: Props) {
       sx={{
         height: '100%',
         margin: '5px 0 20px 40px',
-        paddingRight: '25px',
+        paddingRight: '15px',
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',

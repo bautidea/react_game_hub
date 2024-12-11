@@ -52,7 +52,7 @@ export function Main({
         height: '100%',
         '@media (min-width: 1175px)': {
           marginRight: '40px',
-          paddingLeft: '25px',
+          paddingLeft: '15px',
         },
       }}
     >
