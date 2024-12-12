@@ -1,15 +1,21 @@
 import { Box, InputBase, styled } from '@mui/material';
 import logo from '../../assets/logo/logo.webp';
 import { FaSearch } from 'react-icons/fa';
-import { useState } from 'react';
+import { TbZoomCancel } from 'react-icons/tb';
+import { useEffect, useState } from 'react';
 
 const CustomInput = styled(InputBase)(() => ({
   fontSize: '1.2rem',
 }));
 
-export function Nav() {
+interface Props {
+  handleSearchBarQuery: (searchString: string) => void;
+}
+
+export function Nav({ handleSearchBarQuery }: Props) {
   const [searchBarActive, setSearchBarActive] = useState<boolean>(false);
   const [searchBarHovered, setSearchBarHovered] = useState<boolean>(false);
+  const [searchBarValue, setSearchBarValue] = useState<string>('');
 
   function handleSearchBarHover(value: boolean) {
     setSearchBarHovered(value);
@@ -20,6 +26,20 @@ export function Nav() {
   }
 
   const isSearchBarActive = searchBarActive || searchBarHovered ? true : false;
+
+  const handleSearchBarChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setSearchBarValue(event.target.value);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleSearchBarQuery(searchBarValue);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [searchBarValue]);
 
   return (
     <Box
@@ -69,7 +89,10 @@ export function Nav() {
           size={'32px'}
           fill={isSearchBarActive ? 'rgb(51,51,51)' : 'rgba(255,255,255,0.5)'}
         />
+
         <CustomInput
+          value={searchBarValue}
+          onChange={(event) => handleSearchBarChange(event)}
           placeholder="Search games"
           style={{
             width: '100%',
@@ -78,6 +101,16 @@ export function Nav() {
             }`,
           }}
         />
+
+        {searchBarValue && (
+          <TbZoomCancel
+            onClick={() => setSearchBarValue('')}
+            size={'32px'}
+            color={
+              isSearchBarActive ? 'rgb(51,51,51)' : 'rgba(255,255,255,0.5)'
+            }
+          />
+        )}
       </Box>
     </Box>
   );

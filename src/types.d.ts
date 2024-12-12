@@ -28,4 +28,5 @@ export interface GameQuery {
   selectedIdGenre: number | null;
   selectedIdPlatform: number | null;
   selectedOrder: string;
+  searchQuery: string;
 }

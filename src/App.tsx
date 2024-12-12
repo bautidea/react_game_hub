@@ -10,13 +10,14 @@ function App() {
     handleGenreSelect,
     handlePlatformSelect,
     handleOrderSelect,
+    handleSearchBarQuery,
   } = useGameQuery();
   console.log(gameQuery);
 
   return (
     <Grid2 container>
       <Grid2 size={12}>
-        <Nav />
+        <Nav handleSearchBarQuery={handleSearchBarQuery} />
       </Grid2>
 
       <Grid2

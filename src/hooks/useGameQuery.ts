@@ -6,6 +6,7 @@ export function useGameQuery() {
     selectedIdGenre: null,
     selectedIdPlatform: null,
     selectedOrder: '',
+    searchQuery: '',
   });
 
   const handleGenreSelect = (clickedGenre: Genres) => {
@@ -22,10 +23,15 @@ export function useGameQuery() {
     setGameQuery({ ...gameQuery, selectedOrder: clickedOrder });
   };
 
+  const handleSearchBarQuery = (searchString: string) => {
+    setGameQuery({ ...gameQuery, searchQuery: searchString });
+  };
+
   return {
     gameQuery,
     handleGenreSelect,
     handlePlatformSelect,
     handleOrderSelect,
+    handleSearchBarQuery,
   };
 }
