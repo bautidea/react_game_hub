@@ -61,7 +61,7 @@ export function Main({
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          padding: '20px 0 0',
+          paddingTop: '20px',
           marginBottom: '30px',
           alignItems: 'center',
           '@media (max-width:1175px)': {
@@ -142,7 +142,7 @@ export function Main({
                     justifyItems: 'center',
                     alignContent: 'center',
                     height: {
-                      xs: '71.5vw',
+                      // xs: '71.5vw',
                       md: '39vw',
                       lg: '27vw',
                       xl: '20vw',
