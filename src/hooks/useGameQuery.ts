@@ -11,12 +11,20 @@ export function useGameQuery() {
 
   const handleGenreSelect = (clickedGenre: Genres) => {
     const { id } = clickedGenre;
-    setGameQuery({ ...gameQuery, selectedIdGenre: id });
+    setGameQuery((prevValue) => {
+      if (id !== prevValue.selectedIdGenre)
+        return { ...prevValue, selectedIdGenre: id };
+      else return { ...prevValue, selectedIdGenre: null };
+    });
   };
 
   const handlePlatformSelect = (clickedPlatform: ParentPlatforms) => {
     const { id } = clickedPlatform;
-    setGameQuery({ ...gameQuery, selectedIdPlatform: id });
+    setGameQuery((prevValue) => {
+      if (id !== prevValue.selectedIdPlatform)
+        return { ...prevValue, selectedIdPlatform: id };
+      else return { ...prevValue, selectedIdPlatform: null };
+    });
   };
 
   const handleOrderSelect = (clickedOrder: string) => {
