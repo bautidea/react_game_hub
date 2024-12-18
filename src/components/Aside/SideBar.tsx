@@ -18,6 +18,7 @@ interface SidebarProps<T extends { id: number }> {
   isLoading: boolean;
   renderItem: (element: T, isHovered: boolean) => ReactNode;
   handleItemClick: (clickedItem: T) => void;
+  selectedItem: number | null;
 }
 
 const NUMBEROFSKELETONS = 4;
@@ -28,6 +29,7 @@ export function SideBar<T extends { id: number }>({
   isLoading,
   renderItem,
   handleItemClick,
+  selectedItem,
 }: SidebarProps<T>) {
   const [displayAllItems, setDisplayAllItems] = useState<boolean>(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -79,12 +81,19 @@ export function SideBar<T extends { id: number }>({
       <List>
         {elements?.slice(0, 3).map((element: T & { id: number }) => {
           const isHovered = hoveredItem === element.id;
+          const isSelected = selectedItem === element.id;
+
           return (
             <ListItemButton
               key={element.id}
               onMouseEnter={() => setHoveredItem(element.id)}
               onMouseLeave={() => setHoveredItem(null)}
               onClick={() => handleItemClick(element)}
+              sx={{
+                backgroundColor: isSelected
+                  ? 'rgba(130, 129, 129, 0.5) !important'
+                  : 'auto',
+              }}
             >
               {renderItem(element, isHovered)}
             </ListItemButton>
@@ -112,12 +121,19 @@ export function SideBar<T extends { id: number }>({
         {displayAllItems &&
           elements?.slice(3).map((element: T & { id: number }) => {
             const isHovered = hoveredItem === element.id;
+            const isSelected = selectedItem === element.id;
+
             return (
               <ListItemButton
                 key={element.id}
                 onMouseEnter={() => setHoveredItem(element.id)}
                 onMouseLeave={() => setHoveredItem(null)}
                 onClick={() => handleItemClick(element)}
+                sx={{
+                  backgroundColor: isSelected
+                    ? 'rgba(130, 129, 129, 0.5) !important'
+                    : 'auto',
+                }}
               >
                 {renderItem(element, isHovered)}
               </ListItemButton>

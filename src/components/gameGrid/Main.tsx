@@ -6,12 +6,12 @@ import { DisplayGridIcon } from '../../assets/Emojis/DisplayGridIcon';
 import { DisplayFlexIcon } from '../../assets/Emojis/DisplayFlexIcon';
 import { OrderSelector } from './OrderSelector';
 import { useEffect, useState } from 'react';
-import { useViewPortWidth } from '../../utils/useViewPortWidth';
 
 interface Props {
   gameQuery: GameQuery;
   handleGenreSelect: (clickedGenre: Genres) => void;
   handleOrderSelect: (clickedOrder: string) => void;
+  isMobile: boolean;
 }
 
 const NUMBEROFSKELETONS = 12;
@@ -20,17 +20,17 @@ export function Main({
   gameQuery,
   handleGenreSelect,
   handleOrderSelect,
+  isMobile,
 }: Props) {
   // States for controlling grid display and showing additional game info.
   const [displayGrid, setDisplayGrid] = useState<boolean>(true);
   const [expandedCardId, setExpandedCardId] = useState<number | null>(null);
-  const { viewportWidth } = useViewPortWidth();
 
   useEffect(() => {
-    if (viewportWidth < 1175) {
+    if (isMobile) {
       setDisplayGrid(true);
     }
-  }, [viewportWidth]);
+  }, [isMobile]);
 
   function changeDisplay() {
     setDisplayGrid((prevValue) => !prevValue);
@@ -153,7 +153,7 @@ export function Main({
                     game={isLoading ? undefined : game}
                     handleGenreSelect={handleGenreSelect}
                     displayGrid={displayGrid}
-                    isMobile={viewportWidth < 1175}
+                    isMobile={isMobile}
                     selectedCardId={expandedCardId}
                     handleSelectedCard={handleSelectedCard}
                   />
@@ -179,7 +179,7 @@ export function Main({
                   game={isLoading ? undefined : game}
                   handleGenreSelect={handleGenreSelect}
                   displayGrid={displayGrid}
-                  isMobile={viewportWidth < 1175}
+                  isMobile={isMobile}
                   selectedCardId={expandedCardId}
                   handleSelectedCard={handleSelectedCard}
                 />

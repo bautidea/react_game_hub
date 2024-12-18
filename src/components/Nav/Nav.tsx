@@ -3,17 +3,23 @@ import logo from '../../assets/logo/logo.webp';
 import { FaSearch } from 'react-icons/fa';
 import { TbZoomCancel } from 'react-icons/tb';
 import { useEffect, useState } from 'react';
-import { IoMenu } from 'react-icons/io5';
+import { IoMenu, IoClose } from 'react-icons/io5';
 
 const CustomInput = styled(InputBase)(() => ({
   fontSize: '1.2rem',
 }));
 
 interface Props {
+  sideBarVisible: boolean;
   handleSearchBarQuery: (searchString: string) => void;
+  handleIconSideBarClick: () => void;
 }
 
-export function Nav({ handleSearchBarQuery }: Props) {
+export function Nav({
+  sideBarVisible,
+  handleSearchBarQuery,
+  handleIconSideBarClick,
+}: Props) {
   const [searchBarActive, setSearchBarActive] = useState<boolean>(false);
   const [searchBarHovered, setSearchBarHovered] = useState<boolean>(false);
   const [searchBarValue, setSearchBarValue] = useState<string>('');
@@ -40,7 +46,7 @@ export function Nav({ handleSearchBarQuery }: Props) {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [searchBarValue, handleSearchBarQuery]);
+  }, [searchBarValue]);
 
   return (
     <Box
@@ -79,7 +85,6 @@ export function Nav({ handleSearchBarQuery }: Props) {
           onFocus={() => handleActiveState(true)}
           onBlur={() => handleActiveState(false)}
           sx={{
-            width: '70%',
             alignSelf: 'center',
             display: 'flex',
             flexDirection: 'row',
@@ -91,6 +96,10 @@ export function Nav({ handleSearchBarQuery }: Props) {
               : 'rgba(255,255,255,0.5)',
             borderRadius: '2rem',
             padding: '10px 30px',
+            width: {
+              xs: '80%',
+              md: '70%',
+            },
           }}
         >
           <FaSearch
@@ -129,7 +138,16 @@ export function Nav({ handleSearchBarQuery }: Props) {
           marginRight: '30px',
         }}
       >
-        <IoMenu size={'48px'} />
+        {!sideBarVisible && (
+          <IoMenu size={'48px'} onClick={handleIconSideBarClick} />
+        )}
+        {sideBarVisible && (
+          <IoClose
+            size={'48px'}
+            onClick={handleIconSideBarClick}
+            style={{ zIndex: '3' }}
+          />
+        )}
       </Box>
     </Box>
   );

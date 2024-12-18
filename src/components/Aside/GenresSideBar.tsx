@@ -21,6 +21,7 @@ interface GenresSideBarProps {
   listTitle: string;
   isLoading: boolean;
   handleGenreSelect: (clickedGenre: Genres) => void;
+  selectedGenre: number | null;
 }
 
 export function GenresSideBar({
@@ -28,6 +29,7 @@ export function GenresSideBar({
   listTitle,
   isLoading,
   handleGenreSelect,
+  selectedGenre,
 }: GenresSideBarProps) {
   return (
     <SideBar
@@ -36,6 +38,7 @@ export function GenresSideBar({
       isLoading={isLoading}
       renderItem={RenderGenreItem}
       handleItemClick={handleGenreSelect}
+      selectedItem={selectedGenre}
     />
   );
 }

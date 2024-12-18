@@ -21,6 +21,7 @@ interface PlatformsSideBarProps {
   listTitle: string;
   isLoading: boolean;
   handlePlatformSelect: (clickedPlatform: ParentPlatforms) => void;
+  selectedPlatform: number | null;
 }
 
 export function PlatformsSideBar({
@@ -28,6 +29,7 @@ export function PlatformsSideBar({
   listTitle,
   isLoading,
   handlePlatformSelect,
+  selectedPlatform,
 }: PlatformsSideBarProps) {
   return (
     <SideBar
@@ -36,6 +38,7 @@ export function PlatformsSideBar({
       isLoading={isLoading}
       renderItem={RenderPlatformItem}
       handleItemClick={handlePlatformSelect}
+      selectedItem={selectedPlatform}
     />
   );
 }

@@ -1,16 +1,21 @@
 import { Box } from '@mui/material';
 import { useGenres } from '../../hooks/useGenres';
 import { usePlatforms } from '../../hooks/usePlatforms';
-import { Genres, ParentPlatforms } from '../../types';
+import { GameQuery, Genres, ParentPlatforms } from '../../types';
 import { GenresSideBar } from './GenresSideBar';
 import { PlatformsSideBar } from './PlatformsSideBar';
 
 interface Props {
   handleGenreSelect: (clickedGenre: Genres) => void;
   handlePlatformSelect: (clickedPlatform: ParentPlatforms) => void;
+  gameQuery: GameQuery;
 }
 
-export function Aside({ handleGenreSelect, handlePlatformSelect }: Props) {
+export function Aside({
+  handleGenreSelect,
+  handlePlatformSelect,
+  gameQuery,
+}: Props) {
   const {
     genres,
     isLoading: isGenreLoading,
@@ -41,12 +46,14 @@ export function Aside({ handleGenreSelect, handlePlatformSelect }: Props) {
         listTitle={'Genres'}
         isLoading={isLoading}
         handleGenreSelect={handleGenreSelect}
+        selectedGenre={gameQuery.selectedIdGenre}
       />
       <PlatformsSideBar
         elements={platforms}
         listTitle={'Platforms'}
         isLoading={isLoading}
         handlePlatformSelect={handlePlatformSelect}
+        selectedPlatform={gameQuery.selectedIdPlatform}
       />
     </Box>
   );
