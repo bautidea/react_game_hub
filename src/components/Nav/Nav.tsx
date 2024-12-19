@@ -48,107 +48,143 @@ export function Nav({
     return () => clearTimeout(timer);
   }, [searchBarValue]);
 
+  // Prevent scrolling of the body when the sidebar is visible
+  useEffect(() => {
+    if (sideBarVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [sideBarVisible]);
+
   return (
-    <Box
-      sx={{
-        height: '6rem',
-        display: 'flex',
-        flexDirection: 'row',
-        margin: '15px 40px 0',
-        justifyContent: 'space-between',
-      }}
-    >
+    <>
+      {/* Overlay element to hide background */}
+      {sideBarVisible && (
+        <Box
+          onClick={handleIconSideBarClick}
+          sx={{
+            display: { md: 'none', xs: 'block' },
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 1,
+          }}
+        />
+      )}
+
+      {/* Navigation Bar */}
       <Box
         sx={{
-          width: '100%',
+          height: '6rem',
           display: 'flex',
-          alignItems: 'center',
+          flexDirection: 'row',
+          margin: '15px 40px 0',
+          justifyContent: 'space-between',
         }}
       >
         <Box
           sx={{
+            width: '100%',
             display: 'flex',
-            justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <img
-            src={logo}
-            alt="web logo"
-            style={{ width: '5rem', height: 'auto', objectFit: 'cover' }}
-          />
-        </Box>
-
-        <Box
-          onMouseEnter={() => handleSearchBarHover(true)}
-          onMouseLeave={() => handleSearchBarHover(false)}
-          onFocus={() => handleActiveState(true)}
-          onBlur={() => handleActiveState(false)}
-          sx={{
-            alignSelf: 'center',
-            display: 'flex',
-            flexDirection: 'row',
-            gap: '20px',
-            alignItems: 'center',
-            marginLeft: '40px',
-            backgroundColor: isSearchBarActive
-              ? 'white'
-              : 'rgba(255,255,255,0.5)',
-            borderRadius: '2rem',
-            padding: '10px 30px',
-            width: {
-              xs: '80%',
-              md: '70%',
-            },
-          }}
-        >
-          <FaSearch
-            size={'32px'}
-            fill={isSearchBarActive ? 'rgb(51,51,51)' : 'rgba(255,255,255,0.5)'}
-          />
-
-          <CustomInput
-            value={searchBarValue}
-            onChange={(event) => handleSearchBarChange(event)}
-            placeholder="Search games"
-            style={{
-              width: '100%',
-              color: `${
-                isSearchBarActive ? 'rgb(51,51,51)' : 'rgba(255,255,255,0.5)'
-              }`,
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
-          />
+          >
+            <img
+              src={logo}
+              alt="web logo"
+              style={{ width: '5rem', height: 'auto', objectFit: 'cover' }}
+            />
+          </Box>
 
-          {searchBarValue && (
-            <TbZoomCancel
-              onClick={() => setSearchBarValue('')}
+          <Box
+            onMouseEnter={() => handleSearchBarHover(true)}
+            onMouseLeave={() => handleSearchBarHover(false)}
+            onFocus={() => handleActiveState(true)}
+            onBlur={() => handleActiveState(false)}
+            sx={{
+              alignSelf: 'center',
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '20px',
+              alignItems: 'center',
+              marginLeft: '40px',
+              backgroundColor: isSearchBarActive
+                ? 'white'
+                : 'rgba(255,255,255,0.5)',
+              borderRadius: '2rem',
+              padding: '10px 30px',
+              width: {
+                xs: '80%',
+                md: '70%',
+              },
+            }}
+          >
+            <FaSearch
               size={'32px'}
-              color={
+              fill={
                 isSearchBarActive ? 'rgb(51,51,51)' : 'rgba(255,255,255,0.5)'
               }
+            />
+
+            <CustomInput
+              value={searchBarValue}
+              onChange={(event) => handleSearchBarChange(event)}
+              placeholder="Search games"
+              style={{
+                width: '100%',
+                color: `${
+                  isSearchBarActive ? 'rgb(51,51,51)' : 'rgba(255,255,255,0.5)'
+                }`,
+              }}
+            />
+
+            {searchBarValue && (
+              <TbZoomCancel
+                onClick={() => setSearchBarValue('')}
+                size={'32px'}
+                color={
+                  isSearchBarActive ? 'rgb(51,51,51)' : 'rgba(255,255,255,0.5)'
+                }
+              />
+            )}
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: { md: 'none', xs: 'flex' },
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginRight: '30px',
+          }}
+        >
+          {!sideBarVisible && (
+            <IoMenu size={'48px'} onClick={handleIconSideBarClick} />
+          )}
+          {sideBarVisible && (
+            <IoClose
+              size={'48px'}
+              onClick={handleIconSideBarClick}
+              style={{ zIndex: '3' }}
+              fill="rgba(0,0,0,0.8)"
             />
           )}
         </Box>
       </Box>
-      <Box
-        sx={{
-          display: { md: 'none', xs: 'flex' },
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginRight: '30px',
-        }}
-      >
-        {!sideBarVisible && (
-          <IoMenu size={'48px'} onClick={handleIconSideBarClick} />
-        )}
-        {sideBarVisible && (
-          <IoClose
-            size={'48px'}
-            onClick={handleIconSideBarClick}
-            style={{ zIndex: '3' }}
-          />
-        )}
-      </Box>
-    </Box>
+    </>
   );
 }

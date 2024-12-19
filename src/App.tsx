@@ -76,11 +76,16 @@ function App() {
             },
             backgroundColor: 'white',
             width: '40%',
+            maxHeight: '800px',
             position: 'absolute',
             top: '34px',
             right: '65px',
             paddingTop: '10px',
             paddingRight: '10px',
+            zIndex: 2,
+            overflow: 'auto',
+            borderRadius: '20px',
+            // clipPath: 'inset(0 round 20px)',
           }}
         >
           {AsideComponent}

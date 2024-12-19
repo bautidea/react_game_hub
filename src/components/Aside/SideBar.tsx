@@ -74,7 +74,10 @@ export function SideBar<T extends { id: number }>({
       <Typography
         variant="h4"
         component="p"
-        sx={{ fontWeight: '400', letterSpacing: '1px' }}
+        sx={{
+          fontWeight: '400',
+          letterSpacing: '1px',
+        }}
       >
         {listTitle}
       </Typography>
