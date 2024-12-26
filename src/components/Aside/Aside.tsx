@@ -9,12 +9,14 @@ interface Props {
   handleGenreSelect: (clickedGenre: Genres) => void;
   handlePlatformSelect: (clickedPlatform: ParentPlatforms) => void;
   gameQuery: GameQuery;
+  isMobile: boolean;
 }
 
 export function Aside({
   handleGenreSelect,
   handlePlatformSelect,
   gameQuery,
+  isMobile,
 }: Props) {
   const {
     genres,
@@ -39,6 +41,7 @@ export function Aside({
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
+        color: isMobile ? 'black' : 'auto',
       }}
     >
       <GenresSideBar
@@ -54,6 +57,7 @@ export function Aside({
         isLoading={isLoading}
         handlePlatformSelect={handlePlatformSelect}
         selectedPlatform={gameQuery.selectedIdPlatform}
+        isMobile={isMobile}
       />
     </Box>
   );

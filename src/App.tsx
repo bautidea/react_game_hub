@@ -29,6 +29,7 @@ function App() {
       handleGenreSelect={handleGenreSelect}
       handlePlatformSelect={handlePlatformSelect}
       gameQuery={gameQuery}
+      isMobile={isMobile}
     />
   );
 

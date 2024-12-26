@@ -16,9 +16,14 @@ interface SidebarProps<T extends { id: number }> {
   elements: null | undefined | T[];
   listTitle: string;
   isLoading: boolean;
-  renderItem: (element: T, isHovered: boolean) => ReactNode;
+  renderItem: (
+    element: T,
+    isHovered: boolean,
+    isMobile: null | boolean
+  ) => ReactNode;
   handleItemClick: (clickedItem: T) => void;
   selectedItem: number | null;
+  isMobile: null | boolean;
 }
 
 const NUMBEROFSKELETONS = 4;
@@ -30,6 +35,7 @@ export function SideBar<T extends { id: number }>({
   renderItem,
   handleItemClick,
   selectedItem,
+  isMobile,
 }: SidebarProps<T>) {
   const [displayAllItems, setDisplayAllItems] = useState<boolean>(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -98,7 +104,7 @@ export function SideBar<T extends { id: number }>({
                   : 'auto',
               }}
             >
-              {renderItem(element, isHovered)}
+              {renderItem(element, isHovered, isMobile)}
             </ListItemButton>
           );
         })}
@@ -110,7 +116,11 @@ export function SideBar<T extends { id: number }>({
             onMouseLeave={() => setHoverDisplayAll(false)}
             onClick={() => setDisplayAllItems(true)}
           >
-            <AsideListItem isHovered={hoverDisplayAll} itemName="Show all">
+            <AsideListItem
+              isHovered={hoverDisplayAll}
+              itemName="Show all"
+              isMobile={isMobile}
+            >
               <ExpandMoreIcon
                 sx={{
                   fontSize: '32px',
@@ -138,7 +148,7 @@ export function SideBar<T extends { id: number }>({
                     : 'auto',
                 }}
               >
-                {renderItem(element, isHovered)}
+                {renderItem(element, isHovered, isMobile)}
               </ListItemButton>
             );
           })}
@@ -150,7 +160,11 @@ export function SideBar<T extends { id: number }>({
             onMouseLeave={() => setHoverDisplayAll(false)}
             onClick={() => setDisplayAllItems(false)}
           >
-            <AsideListItem isHovered={hoverDisplayAll} itemName="Hide">
+            <AsideListItem
+              isHovered={hoverDisplayAll}
+              itemName="Hide"
+              isMobile={isMobile}
+            >
               <ExpandLessIcon
                 sx={{
                   fontSize: '32px',

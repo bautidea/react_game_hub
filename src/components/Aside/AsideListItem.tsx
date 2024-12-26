@@ -5,12 +5,19 @@ interface ListItemProps {
   isHovered: boolean;
   itemName: string;
   children: ReactNode;
+  isMobile: null | boolean;
 }
 export function AsideListItem({
   isHovered,
   itemName,
   children,
+  isMobile,
 }: ListItemProps) {
+  let backgroundColor = isMobile ? 'black' : 'rgba(255,255,255,0.2)';
+  if (isHovered) {
+    backgroundColor = 'rgb(255,255,255)';
+  }
+
   return (
     <>
       <ListItemIcon
@@ -25,9 +32,7 @@ export function AsideListItem({
             height: '32px',
             width: '32px',
             borderRadius: '10px',
-            backgroundColor: `${
-              isHovered ? 'rgb(255,255,255)' : 'rgba(255,255,255,0.2)'
-            }`,
+            backgroundColor: backgroundColor,
             justifyContent: 'center',
             alignItems: 'center',
             display: ' flex',
