@@ -27,7 +27,7 @@ const theme = createTheme({
   },
 });
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <ThemeProvider theme={theme}>

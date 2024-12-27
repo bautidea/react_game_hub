@@ -41,7 +41,7 @@ export function Main({
   }
 
   // Fetched games.
-  const { games, isLoading, isError, error } = useGames();
+  const { games, isLoading, isError, error } = useGames({ gameQuery });
 
   if (isError) return <div>{`Error ${error}`}</div>;
 

@@ -1,4 +1,5 @@
 import { Genres } from '../../types';
+import { getCroppedImageUrl } from '../../utils/image-url';
 import { AsideListItem } from './AsideListItem';
 import { SideBar } from './SideBar';
 
@@ -14,7 +15,7 @@ function RenderGenreItem(
       isMobile={isMobile}
     >
       <img
-        src={element.image_background}
+        src={getCroppedImageUrl(element.image_background)}
         style={{
           height: '100%',
           width: '100%',
