@@ -50,6 +50,7 @@ export function Aside({
         isLoading={isLoading}
         handleGenreSelect={handleGenreSelect}
         selectedGenre={gameQuery.selectedIdGenre}
+        isMobile={isMobile}
       />
       <PlatformsSideBar
         elements={platforms}

@@ -41,6 +41,11 @@ export function SideBar<T extends { id: number }>({
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const [hoverDisplayAll, setHoverDisplayAll] = useState<boolean>(false);
 
+  let expandIconsBackgroundColor = 'rgb(255,255,255)';
+  if (hoverDisplayAll && !isMobile) {
+    expandIconsBackgroundColor = 'black';
+  }
+
   if (isLoading)
     return (
       <Box>
@@ -124,7 +129,7 @@ export function SideBar<T extends { id: number }>({
               <ExpandMoreIcon
                 sx={{
                   fontSize: '32px',
-                  color: `${hoverDisplayAll ? 'black' : 'rgb(255,255,255)'}`,
+                  color: expandIconsBackgroundColor,
                 }}
               />
             </AsideListItem>
@@ -168,7 +173,7 @@ export function SideBar<T extends { id: number }>({
               <ExpandLessIcon
                 sx={{
                   fontSize: '32px',
-                  color: `${hoverDisplayAll ? 'black' : 'rgb(255,255,255)'}`,
+                  color: expandIconsBackgroundColor,
                 }}
               />
             </AsideListItem>

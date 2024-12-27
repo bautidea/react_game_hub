@@ -10,16 +10,18 @@ function RenderPlatformItem(
 ) {
   const PlatformIcon = iconMapper[element.slug];
 
+  let fillColor = 'rgb(255,255,255)';
+  if (isHovered && !isMobile) {
+    fillColor = 'black';
+  }
+
   return (
     <AsideListItem
       isHovered={isHovered}
       itemName={element.name}
       isMobile={isMobile}
     >
-      <PlatformIcon
-        size={`20px`}
-        fill={isHovered ? 'black' : 'rgb(255,255,255)'}
-      />
+      <PlatformIcon size={`20px`} fill={fillColor} />
     </AsideListItem>
   );
 }

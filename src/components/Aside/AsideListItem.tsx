@@ -14,7 +14,7 @@ export function AsideListItem({
   isMobile,
 }: ListItemProps) {
   let backgroundColor = isMobile ? 'black' : 'rgba(255,255,255,0.2)';
-  if (isHovered) {
+  if (isHovered && !isMobile) {
     backgroundColor = 'rgb(255,255,255)';
   }
 

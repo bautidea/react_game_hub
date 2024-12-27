@@ -2,9 +2,17 @@ import { Genres } from '../../types';
 import { AsideListItem } from './AsideListItem';
 import { SideBar } from './SideBar';
 
-function RenderGenreItem(element: Genres, isHovered: boolean) {
+function RenderGenreItem(
+  element: Genres,
+  isHovered: boolean,
+  isMobile: boolean | null
+) {
   return (
-    <AsideListItem isHovered={isHovered} itemName={element.name}>
+    <AsideListItem
+      isHovered={isHovered}
+      itemName={element.name}
+      isMobile={isMobile}
+    >
       <img
         src={element.image_background}
         style={{
@@ -22,6 +30,7 @@ interface GenresSideBarProps {
   isLoading: boolean;
   handleGenreSelect: (clickedGenre: Genres) => void;
   selectedGenre: number | null;
+  isMobile: boolean | null;
 }
 
 export function GenresSideBar({
@@ -30,6 +39,7 @@ export function GenresSideBar({
   isLoading,
   handleGenreSelect,
   selectedGenre,
+  isMobile,
 }: GenresSideBarProps) {
   return (
     <SideBar
@@ -39,6 +49,7 @@ export function GenresSideBar({
       renderItem={RenderGenreItem}
       handleItemClick={handleGenreSelect}
       selectedItem={selectedGenre}
+      isMobile={isMobile}
     />
   );
 }
