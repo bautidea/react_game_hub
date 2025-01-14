@@ -21,15 +21,19 @@ This project consist in a modern web application designed for exploring and brow
 
 - Scrollable Sidebars: Use sidebars to browse genres and platforms.
 - Dynamic Selection: Sidebars dynamically highlight selected items.
+<div align='center' display='flex' flex-direction='row'>
+<img src='./src/assets/git/sideBarSelector.gif' width='70%'>
+</div>
 
 ### Game Cards
 
 - Interactive Cards: Hover or click on game cards to view additional details.
 - Image Optimization: Dynamically resized images for better performance.
-
-### Responsive Design
-
 - Fully optimized for both desktop and mobile devices.
+<div  display='flex' flex-direction='row'>
+<img src='./src/assets/git/desktopCard.gif' width='50%' align='center'>
+<img src='./src/assets/git/mobileCard.gif' width='40%' align='center'>
+</div>
 
 ## Developed Using:
 

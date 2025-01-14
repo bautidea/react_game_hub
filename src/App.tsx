@@ -18,7 +18,6 @@ function App() {
     handleOrderSelect,
     handleSearchBarQuery,
   } = useGameQuery();
-  console.log(gameQuery);
 
   function handleIconSideBarClick() {
     setSideBarVisible((prevValue) => !prevValue);
